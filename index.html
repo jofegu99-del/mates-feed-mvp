@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#17181c" />
+<title>Nexo · Matemáticas 4.º</title>
+<style>
+  :root{--bg:#f6f7fb;--card:#fff;--ink:#17181c;--muted:#6f7480;--accent:#6d5dfc;--good:#1f9d65;--bad:#d74452;--line:#e9eaf0;--gold:#ffb020}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  button{font:inherit;-webkit-tap-highlight-color:transparent}.app{max-width:480px;margin:0 auto;min-height:100dvh;padding:env(safe-area-inset-top) 18px calc(24px + env(safe-area-inset-bottom))}
+  .top{display:flex;align-items:center;justify-content:space-between;padding:14px 2px 8px}.brand{font-weight:900;letter-spacing:-.04em;font-size:23px}.brand b{color:var(--accent)}
+  .stats{display:flex;gap:8px}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 10px;font-size:12px;font-weight:800;box-shadow:0 3px 10px #1018280a}
+  .progressWrap{margin:12px 0 18px}.progressMeta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:7px}.track{height:9px;background:#e6e7ee;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#9c77ff);transition:.35s}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:0 12px 36px rgba(30,35,60,.08);min-height:520px;display:flex;flex-direction:column}
+  .kicker{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.tag{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:#f0edff;padding:7px 9px;border-radius:999px}.difficulty{font-size:12px;color:var(--muted);font-weight:800}
+  .visual{min-height:130px;border-radius:22px;background:linear-gradient(145deg,#f5f2ff,#eef6ff);display:grid;place-items:center;padding:18px;margin-bottom:20px;text-align:center;font-weight:900;font-size:30px;letter-spacing:-.03em;position:relative;overflow:hidden}.visual small{display:block;font-size:13px;color:var(--muted);font-weight:700;margin-top:8px;letter-spacing:0}
+  h1{font-size:27px;line-height:1.1;letter-spacing:-.045em;margin:0 0 10px}.sub{color:var(--muted);font-size:14px;line-height:1.4;margin-bottom:18px}
+  .answers{display:grid;gap:10px;margin-top:auto}.answer{border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:15px 14px;text-align:left;font-size:17px;font-weight:800;cursor:pointer;transition:.15s}.answer:active{transform:scale(.99)}.answer.correct{background:#eaf8f1;border-color:#9ad8bd;color:#176e4b}.answer.wrong{background:#fff0f2;border-color:#f3afb6;color:#a62d39}.answer:disabled{cursor:default;transform:none}
+  .feedback{display:none;margin-top:14px;padding:14px;border-radius:16px;font-size:14px;line-height:1.42;font-weight:650}.feedback.show{display:block}.feedback.good{background:#eaf8f1;color:#176e4b}.feedback.bad{background:#fff0f2;color:#962b36}
+  .next{display:none;width:100%;border:0;background:var(--ink);color:#fff;padding:15px;border-radius:18px;font-weight:900;font-size:16px;margin-top:12px;cursor:pointer}.next.show{display:block}
+  .home{min-height:78dvh;display:flex;flex-direction:column;justify-content:center}.hero{background:#17181c;color:#fff;border-radius:34px;padding:28px;box-shadow:0 20px 60px #10182824}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#bfb8ff;font-weight:900}.hero h1{font-size:38px;margin:10px 0 12px}.hero p{color:#d5d6dd;line-height:1.5}.selectbox{margin-top:22px;background:#25262b;border-radius:18px;padding:14px 16px;color:#fff;display:flex;justify-content:space-between;font-weight:850}.cta{margin-top:12px;border:0;width:100%;padding:17px;border-radius:18px;background:#fff;color:#17181c;font-weight:950;font-size:17px;cursor:pointer}.parentLink{margin-top:14px;background:transparent;color:#d9d7ff;border:0;width:100%;font-weight:800;cursor:pointer}
+  .done{text-align:center;justify-content:center}.done .big{font-size:62px}.done h1{font-size:34px}.score{font-size:56px;font-weight:950;letter-spacing:-.06em;margin:12px 0}.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.mini{border:1px solid var(--line);border-radius:18px;padding:15px;text-align:left}.mini b{font-size:20px}.mini span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.again{border:0;background:var(--accent);color:#fff;width:100%;padding:16px;border-radius:18px;font-weight:900;margin-top:18px;cursor:pointer}
+  .dashboard{padding-bottom:30px}.dashboard h1{margin-top:12px}.back{border:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-weight:850;cursor:pointer}.skillRow{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0}.skillTop{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:850}.skillTrack{height:7px;background:#ececf2;border-radius:99px;overflow:hidden;margin-top:9px}.skillFill{height:100%;background:var(--accent)}.note{margin-top:16px;font-size:12px;color:var(--muted);line-height:1.45}.hidden{display:none!important}
+  .fraction{font-size:44px;display:inline-grid;grid-template-rows:1fr 1fr;line-height:1}.fraction span:first-child{border-bottom:3px solid #17181c;padding:0 8px 4px}.fraction span:last-child{padding:4px 8px 0}
+  .coins{font-size:42px;letter-spacing:8px}.shape{width:120px;height:80px;border:6px solid var(--accent);border-radius:8px;position:relative}.shape:before{content:"";position:absolute;inset:18px;border:2px dashed #8d83ff}
+</style>
+</head>
+<body>
+<div class="app">
+  <section id="home" class="home">
+    <div class="hero">
+      <div class="eyebrow">MVP · Cataluña</div>
+      <h1>10 minutos de pantalla que sí suman.</h1>
+      <p>Un feed corto de matemáticas que decide qué debe practicar el niño según el currículo y lo que va acertando o fallando.</p>
+      <div class="selectbox"><span>4.º Primaria</span><span>⌄</span></div>
+      <div class="selectbox"><span>Matemáticas</span><span>⌄</span></div>
+      <button class="cta" id="startBtn">JUGAR · sesión de hoy →</button>
+      <button class="parentLink" id="parentBtn">Ver modo padres</button>
+    </div>
+  </section>
+
+  <section id="game" class="hidden">
+    <div class="top"><div class="brand">ne<b>x</b>o</div><div class="stats"><div class="pill">🔥 <span id="streak">1</span></div><div class="pill">⚡ <span id="xp">0</span> XP</div></div></div>
+    <div class="progressWrap"><div class="progressMeta"><span>Sesión de hoy</span><span id="stepLabel">1/10</span></div><div class="track"><div class="bar" id="bar"></div></div></div>
+    <div class="card">
+      <div class="kicker"><span class="tag" id="tag">Cálculo</span><span class="difficulty" id="difficulty">●●○</span></div>
+      <div class="visual" id="visual"></div>
+      <h1 id="question"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="next" id="nextBtn">Siguiente →</button>
+    </div>
+  </section>
+
+  <section id="done" class="hidden">
+    <div class="card done">
+      <div class="big">🏆</div>
+      <div class="tag">Sesión terminada</div>
+      <h1>Buen trabajo. Por hoy, se acabó.</h1>
+      <div class="score"><span id="finalCorrect">0</span>/10</div>
+      <p class="sub">Mañana el feed volverá a mezclar contenido nuevo, repaso y aquello que hoy haya costado más.</p>
+      <div class="miniGrid"><div class="mini"><b id="finalXp">0</b><span>XP ganados</span></div><div class="mini"><b id="finalWeak">—</b><span>refuerzo prioritario</span></div></div>
+      <button class="again" id="homeBtn">Volver al inicio</button>
+    </div>
+  </section>
+
+  <section id="parents" class="dashboard hidden">
+    <div class="top"><button class="back" id="backBtn">← Volver</button><div class="brand">ne<b>x</b>o</div></div>
+    <h1>Progreso de Alex</h1>
+    <p class="sub">4.º Primaria · Matemáticas · Cataluña</p>
+    <div class="miniGrid"><div class="mini"><b id="pSessions">0</b><span>sesiones</span></div><div class="mini"><b id="pAccuracy">—</b><span>acierto global</span></div></div>
+    <h2 style="margin:24px 0 8px;font-size:18px">Mapa de aprendizaje</h2>
+    <div id="skillList"></div>
+    <div class="note">V0: este panel guarda el progreso en este navegador. El producto final separaría perfil infantil y perfil familiar, y el motor usaría un mapa curricular mucho más granular.</div>
+  </section>
+</div>
+<script>
+const skills = {
+  place:{name:'Numeración hasta 9.999', area:'Sentido numérico', mastery:55},
+  mult:{name:'Multiplicación y tablas', area:'Operaciones', mastery:50},
+  div:{name:'División y reparto', area:'Operaciones', mastery:45},
+  frac:{name:'Fracciones sencillas', area:'Sentido numérico', mastery:42},
+  measure:{name:'Medidas y unidades', area:'Sentido de la medida', mastery:50},
+  perimeter:{name:'Perímetro', area:'Sentido espacial', mastery:48},
+  money:{name:'Euros, céntimos y cambio', area:'Educación financiera', mastery:52},
+  pattern:{name:'Patrones y regularidades', area:'Sentido algebraico', mastery:50},
+  data:{name:'Datos y gráficos', area:'Sentido estocástico', mastery:47},
+  prob:{name:'Probabilidad intuitiva', area:'Sentido estocástico', mastery:50}
+};
+const saved = JSON.parse(localStorage.getItem('nexo4p') || '{}');
+if(saved.skills){Object.keys(skills).forEach(k=>{if(saved.skills[k]!=null) skills[k].mastery=saved.skills[k]})}
+let state={step:0,correct:0,xp:saved.xp||0,answered:false,session:[],results:[],sessions:saved.sessions||0,totalQ:saved.totalQ||0,totalCorrect:saved.totalCorrect||0};
+const $=id=>document.getElementById(id);
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function mc(correct, distractors){return shuffle([correct,...distractors]).slice(0,4)}
+const generators={
+ place(){let n=rnd(1200,9899), digit=Math.floor(n/100)%10; return {skill:'place',tag:'Números',level:2,visual:`${n.toLocaleString('es-ES')}<small>Valor posicional</small>`,q:`¿Cuánto vale la cifra ${digit} en este número?`,sub:'Piensa en unidades, decenas, centenas y millares.',a:String(digit*100),opts:mc(String(digit*100),[String(digit),String(digit*10),String(digit*1000)]),why:`La cifra ${digit} está en la posición de las centenas: vale ${digit*100}.`}},
+ mult(){let a=rnd(3,9),b=rnd(4,9);let c=a*b; return {skill:'mult',tag:'Cálculo',level:2,visual:`${a} × ${b}<small>Reto rápido</small>`,q:'¿Cuál es el resultado?',sub:'Intenta resolverlo mentalmente.',a:String(c),opts:mc(String(c),[String(c+a),String(c-b),String(c+10)]),why:`${a} grupos de ${b} hacen ${c}.`}},
+ div(){let b=rnd(3,9),q=rnd(3,10),a=b*q; return {skill:'div',tag:'Reparto',level:2,visual:`🍓 ${a} fresas<br><small>repartidas entre ${b} personas</small>`,q:'¿Cuántas fresas recibe cada persona?',sub:'Todas reciben exactamente lo mismo.',a:String(q),opts:mc(String(q),[String(q+1),String(Math.max(1,q-1)),String(b)]),why:`${a} ÷ ${b} = ${q}.`}},
+ frac(){let den=[4,6,8][rnd(0,2)],num=rnd(1,den-1); return {skill:'frac',tag:'Fracciones',level:2,visual:`<span class="fraction"><span>${num}</span><span>${den}</span></span><small>Parte de un todo</small>`,q:`Si una pizza tiene ${den} porciones iguales y comes ${num}, ¿qué fracción has comido?`,sub:'El denominador indica cuántas partes iguales hay en total.',a:`${num}/${den}`,opts:mc(`${num}/${den}`,[`${den}/${num}`,`${num}/${den+1}`,`${Math.max(1,num-1)}/${den}`]),why:`Has comido ${num} de ${den} partes iguales: ${num}/${den}.`}},
+ measure(){let cm=rnd(2,8)*100; return {skill:'measure',tag:'Medida',level:1,visual:`📏 ${cm} cm<small>Longitud</small>`,q:'¿Cuántos metros son?',sub:'100 centímetros equivalen a 1 metro.',a:String(cm/100)+' m',opts:mc(String(cm/100)+' m',[String(cm/10)+' m',String(cm)+' m',String(cm/1000)+' m']),why:`${cm} ÷ 100 = ${cm/100}. Por tanto, ${cm} cm = ${cm/100} m.`}},
+ perimeter(){let a=rnd(3,9),b=rnd(2,7),p=2*(a+b);return {skill:'perimeter',tag:'Geometría',level:2,visual:`<div class="shape"></div><small>${a} cm × ${b} cm</small>`,q:'¿Cuál es el perímetro del rectángulo?',sub:'Suma la longitud de sus cuatro lados.',a:String(p)+' cm',opts:mc(String(p)+' cm',[String(a*b)+' cm',String(a+b)+' cm',String(p+2)+' cm']),why:`${a}+${b}+${a}+${b} = ${p} cm.`}},
+ money(){let price=rnd(21,47);let pay=50;let ch=pay-price;return {skill:'money',tag:'Dinero',level:2,visual:`<div class="coins">💶 🛒</div><small>Pagas con 50 € · cuesta ${price} €</small>`,q:'¿Cuánto cambio deben devolverte?',sub:'Resta el precio al dinero entregado.',a:String(ch)+' €',opts:mc(String(ch)+' €',[String(ch+2)+' €',String(price)+' €',String(50+price)+' €']),why:`50 − ${price} = ${ch} €.`}},
+ pattern(){let start=rnd(2,8),step=rnd(3,7);let arr=[start,start+step,start+2*step,start+3*step];let ans=start+4*step;return {skill:'pattern',tag:'Patrones',level:2,visual:`${arr.join(' · ')} · ?<small>Descubre la regla</small>`,q:'¿Qué número viene después?',sub:'Busca cuánto aumenta de un término al siguiente.',a:String(ans),opts:mc(String(ans),[String(ans+step),String(ans-1),String(ans+1)]),why:`La serie aumenta de ${step} en ${step}. El siguiente es ${ans}.`}},
+ data(){let a=rnd(5,10),b=rnd(3,8),c=rnd(2,7);let max=Math.max(a,b,c);let name=max===a?'fútbol':max===b?'baloncesto':'natación';return {skill:'data',tag:'Datos',level:1,visual:`⚽ ${'▮'.repeat(a)}<br>🏀 ${'▮'.repeat(b)}<br>🏊 ${'▮'.repeat(c)}<small>Cada barra = 1 voto</small>`,q:'¿Qué actividad tiene más votos?',sub:'Compara la longitud de las tres barras.',a:name,opts:shuffle(['fútbol','baloncesto','natación','tienen los mismos']),why:`La barra más larga corresponde a ${name}.`}},
+ prob(){let red=rnd(4,8),blue=rnd(1,3);return {skill:'prob',tag:'Azar',level:1,visual:`🔴 × ${red} &nbsp;&nbsp; 🔵 × ${blue}<small>Bolsa de fichas</small>`,q:'Sin mirar, ¿qué color es más probable sacar?',sub:'Compara cuántas fichas hay de cada color.',a:'rojo',opts:shuffle(['rojo','azul','igual de probable','imposible saberlo']),why:`Hay ${red} rojas y ${blue} azules, así que es más probable sacar una roja.`}}
+};
+function buildSession(){
+  const keys=Object.keys(skills);
+  const weak=[...keys].sort((a,b)=>skills[a].mastery-skills[b].mastery);
+  const base=shuffle(keys).slice(0,6);
+  const reinforce=weak.slice(0,4);
+  state.session=shuffle([...base,...reinforce]).slice(0,10);
+  while(state.session.length<10) state.session.push(keys[rnd(0,keys.length-1)]);
+}
+function showScreen(id){['home','game','done','parents'].forEach(x=>$(x).classList.add('hidden'));$(id).classList.remove('hidden')}
+function start(){state.step=0;state.correct=0;state.results=[];buildSession();showScreen('game');render()}
+function render(){
+  state.answered=false; $('feedback').className='feedback';$('nextBtn').className='next';
+  const key=state.session[state.step], item=generators[key](); state.current=item;
+  $('tag').textContent=item.tag;$('difficulty').textContent=item.level===1?'●○○':item.level===2?'●●○':'●●●';$('visual').innerHTML=item.visual;$('question').textContent=item.q;$('sub').textContent=item.sub;$('stepLabel').textContent=`${state.step+1}/10`;$('bar').style.width=`${state.step*10}%`;$('xp').textContent=state.xp;
+  $('answers').innerHTML=''; item.opts.forEach(opt=>{let b=document.createElement('button');b.className='answer';b.textContent=opt;b.onclick=()=>answer(b,opt);$('answers').appendChild(b)})
+}
+function answer(btn,opt){if(state.answered)return;state.answered=true;const item=state.current;const ok=opt===item.a;document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;if(b.textContent===item.a)b.classList.add('correct')});if(!ok)btn.classList.add('wrong');
+  const delta=ok?8:-6;skills[item.skill].mastery=Math.max(5,Math.min(100,skills[item.skill].mastery+delta));state.totalQ++;if(ok){state.correct++;state.totalCorrect++;state.xp+=10} else state.xp+=2;
+  state.results.push({skill:item.skill,ok});$('feedback').textContent=(ok?'✓ Correcto. ':'Casi. ')+item.why;$('feedback').className='feedback show '+(ok?'good':'bad');$('nextBtn').className='next show';$('xp').textContent=state.xp;
+}
+function next(){state.step++; if(state.step>=10){finish()}else render()}
+function finish(){state.sessions++;save();$('bar').style.width='100%';$('finalCorrect').textContent=state.correct;$('finalXp').textContent=state.correct*10+(10-state.correct)*2;const misses=state.results.filter(r=>!r.ok).map(r=>r.skill);const weak=misses[0]||Object.keys(skills).sort((a,b)=>skills[a].mastery-skills[b].mastery)[0];$('finalWeak').textContent=skills[weak].name;showScreen('done')}
+function save(){localStorage.setItem('nexo4p',JSON.stringify({skills:Object.fromEntries(Object.entries(skills).map(([k,v])=>[k,v.mastery])),xp:state.xp,sessions:state.sessions,totalQ:state.totalQ,totalCorrect:state.totalCorrect}))}
+function parents(){showScreen('parents');$('pSessions').textContent=state.sessions;$('pAccuracy').textContent=state.totalQ?Math.round(100*state.totalCorrect/state.totalQ)+'%':'—';const list=$('skillList');list.innerHTML='';Object.values(skills).sort((a,b)=>a.mastery-b.mastery).forEach(s=>{let d=document.createElement('div');d.className='skillRow';d.innerHTML=`<div class="skillTop"><span>${s.name}</span><span>${Math.round(s.mastery)}%</span></div><div style="font-size:11px;color:#7b7f89;margin-top:3px">${s.area}</div><div class="skillTrack"><div class="skillFill" style="width:${s.mastery}%"></div></div>`;list.appendChild(d)})}
+$('startBtn').onclick=start;$('nextBtn').onclick=next;$('parentBtn').onclick=parents;$('backBtn').onclick=()=>showScreen('home');$('homeBtn').onclick=()=>showScreen('home');
+$('xp').textContent=state.xp;$('streak').textContent=Math.max(1,state.sessions);
+</script>
+</body>
+</html>
