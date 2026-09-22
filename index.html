@@ -1,139 +1,425 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#17181c" />
-<title>Nexo · Matemáticas 4.º</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#12131a">
+<title>Nexo · Mates que se juegan</title>
 <style>
-  :root{--bg:#f6f7fb;--card:#fff;--ink:#17181c;--muted:#6f7480;--accent:#6d5dfc;--good:#1f9d65;--bad:#d74452;--line:#e9eaf0;--gold:#ffb020}
-  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-  button{font:inherit;-webkit-tap-highlight-color:transparent}.app{max-width:480px;margin:0 auto;min-height:100dvh;padding:env(safe-area-inset-top) 18px calc(24px + env(safe-area-inset-bottom))}
-  .top{display:flex;align-items:center;justify-content:space-between;padding:14px 2px 8px}.brand{font-weight:900;letter-spacing:-.04em;font-size:23px}.brand b{color:var(--accent)}
-  .stats{display:flex;gap:8px}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 10px;font-size:12px;font-weight:800;box-shadow:0 3px 10px #1018280a}
-  .progressWrap{margin:12px 0 18px}.progressMeta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:7px}.track{height:9px;background:#e6e7ee;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#9c77ff);transition:.35s}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:0 12px 36px rgba(30,35,60,.08);min-height:520px;display:flex;flex-direction:column}
-  .kicker{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.tag{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:#f0edff;padding:7px 9px;border-radius:999px}.difficulty{font-size:12px;color:var(--muted);font-weight:800}
-  .visual{min-height:130px;border-radius:22px;background:linear-gradient(145deg,#f5f2ff,#eef6ff);display:grid;place-items:center;padding:18px;margin-bottom:20px;text-align:center;font-weight:900;font-size:30px;letter-spacing:-.03em;position:relative;overflow:hidden}.visual small{display:block;font-size:13px;color:var(--muted);font-weight:700;margin-top:8px;letter-spacing:0}
-  h1{font-size:27px;line-height:1.1;letter-spacing:-.045em;margin:0 0 10px}.sub{color:var(--muted);font-size:14px;line-height:1.4;margin-bottom:18px}
-  .answers{display:grid;gap:10px;margin-top:auto}.answer{border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:15px 14px;text-align:left;font-size:17px;font-weight:800;cursor:pointer;transition:.15s}.answer:active{transform:scale(.99)}.answer.correct{background:#eaf8f1;border-color:#9ad8bd;color:#176e4b}.answer.wrong{background:#fff0f2;border-color:#f3afb6;color:#a62d39}.answer:disabled{cursor:default;transform:none}
-  .feedback{display:none;margin-top:14px;padding:14px;border-radius:16px;font-size:14px;line-height:1.42;font-weight:650}.feedback.show{display:block}.feedback.good{background:#eaf8f1;color:#176e4b}.feedback.bad{background:#fff0f2;color:#962b36}
-  .next{display:none;width:100%;border:0;background:var(--ink);color:#fff;padding:15px;border-radius:18px;font-weight:900;font-size:16px;margin-top:12px;cursor:pointer}.next.show{display:block}
-  .home{min-height:78dvh;display:flex;flex-direction:column;justify-content:center}.hero{background:#17181c;color:#fff;border-radius:34px;padding:28px;box-shadow:0 20px 60px #10182824}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#bfb8ff;font-weight:900}.hero h1{font-size:38px;margin:10px 0 12px}.hero p{color:#d5d6dd;line-height:1.5}.selectbox{margin-top:22px;background:#25262b;border-radius:18px;padding:14px 16px;color:#fff;display:flex;justify-content:space-between;font-weight:850}.cta{margin-top:12px;border:0;width:100%;padding:17px;border-radius:18px;background:#fff;color:#17181c;font-weight:950;font-size:17px;cursor:pointer}.parentLink{margin-top:14px;background:transparent;color:#d9d7ff;border:0;width:100%;font-weight:800;cursor:pointer}
-  .done{text-align:center;justify-content:center}.done .big{font-size:62px}.done h1{font-size:34px}.score{font-size:56px;font-weight:950;letter-spacing:-.06em;margin:12px 0}.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.mini{border:1px solid var(--line);border-radius:18px;padding:15px;text-align:left}.mini b{font-size:20px}.mini span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.again{border:0;background:var(--accent);color:#fff;width:100%;padding:16px;border-radius:18px;font-weight:900;margin-top:18px;cursor:pointer}
-  .dashboard{padding-bottom:30px}.dashboard h1{margin-top:12px}.back{border:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-weight:850;cursor:pointer}.skillRow{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin:10px 0}.skillTop{display:flex;justify-content:space-between;gap:12px;font-size:13px;font-weight:850}.skillTrack{height:7px;background:#ececf2;border-radius:99px;overflow:hidden;margin-top:9px}.skillFill{height:100%;background:var(--accent)}.note{margin-top:16px;font-size:12px;color:var(--muted);line-height:1.45}.hidden{display:none!important}
-  .fraction{font-size:44px;display:inline-grid;grid-template-rows:1fr 1fr;line-height:1}.fraction span:first-child{border-bottom:3px solid #17181c;padding:0 8px 4px}.fraction span:last-child{padding:4px 8px 0}
-  .coins{font-size:42px;letter-spacing:8px}.shape{width:120px;height:80px;border:6px solid var(--accent);border-radius:8px;position:relative}.shape:before{content:"";position:absolute;inset:18px;border:2px dashed #8d83ff}
+:root{
+  --bg:#0f1016;--panel:#171923;--panel2:#202332;--ink:#f8f8fb;--muted:#a6a9b8;
+  --purple:#7967ff;--purple2:#a78bfa;--green:#31d58b;--red:#ff5f71;--yellow:#ffd45b;--blue:#54b7ff;
+  --line:rgba(255,255,255,.09);--shadow:0 22px 60px rgba(0,0,0,.35)
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:radial-gradient(circle at 50% -10%,#27233d 0,#111219 42%,#0c0d12 100%);color:var(--ink);font-family:Inter,ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overscroll-behavior:none}
+button{font:inherit;color:inherit}
+.app{max-width:500px;margin:auto;min-height:100dvh;padding:calc(12px + env(safe-area-inset-top)) 16px calc(22px + env(safe-area-inset-bottom))}
+.hidden{display:none!important}
+.topbar{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-weight:1000;font-size:25px;letter-spacing:-.06em}.logo em{font-style:normal;color:var(--purple2)}
+.hud{display:flex;gap:7px}.hudPill{display:flex;align-items:center;gap:5px;border:1px solid var(--line);background:rgba(255,255,255,.05);padding:8px 10px;border-radius:999px;font-size:12px;font-weight:900}
+.shell{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);overflow:hidden}
+.home{padding:22px;min-height:calc(100dvh - 100px);display:flex;flex-direction:column;justify-content:space-between}
+.heroTag{display:inline-flex;align-items:center;gap:7px;width:max-content;background:#27233e;color:#c8c1ff;border:1px solid #403a67;border-radius:999px;padding:8px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.11em;font-weight:950}
+h1{font-size:38px;line-height:1.02;letter-spacing:-.055em;margin:13px 0 10px}
+.lead{margin:0;color:#c8cad4;font-size:15px;line-height:1.48}
+.homeGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
+.choice{background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:13px}.choice small{display:block;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.choice b{display:block;margin-top:3px;font-size:14px}
+.primary{width:100%;border:0;border-radius:20px;padding:17px 18px;background:linear-gradient(135deg,var(--purple),#9d75ff);font-weight:1000;font-size:17px;box-shadow:0 12px 30px rgba(121,103,255,.28);cursor:pointer}
+.secondary{width:100%;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:18px;padding:14px;margin-top:10px;font-weight:850;cursor:pointer}
+.companionWrap{display:grid;place-items:center;padding:18px 0 8px;position:relative}
+.orbit{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#4d407c 0,#27243c 46%,transparent 47%);display:grid;place-items:center;position:relative;filter:drop-shadow(0 18px 35px rgba(89,63,171,.3))}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(167,139,250,.28);border-radius:50%;inset:-12px;animation:spin 12s linear infinite}
+.orbit:after{inset:18px;border-style:dashed;animation-direction:reverse;animation-duration:8s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bot{width:105px;height:92px;border-radius:36px 36px 30px 30px;background:linear-gradient(160deg,#fff,#cbc7f7);position:relative;z-index:2;box-shadow:inset 0 -9px 0 rgba(64,47,120,.12),0 14px 30px rgba(0,0,0,.25);transition:.25s}
+.bot:before{content:"";position:absolute;left:17px;right:17px;top:23px;height:38px;border-radius:22px;background:#202332}
+.eye{position:absolute;width:11px;height:15px;background:#8df1d1;border-radius:50%;top:35px;z-index:3;box-shadow:0 0 14px #31d58b}.eye.l{left:35px}.eye.r{right:35px}
+.bot.happy{transform:translateY(-6px) rotate(-2deg)}.bot.happy .eye{height:9px;border-radius:10px 10px 2px 2px;transform:translateY(4px)}
+.bot.sad{transform:rotate(3deg) translateY(3px)}.bot.sad .eye{background:#ff8e9a}
+.antenna{position:absolute;width:7px;height:22px;background:#cbc7f7;left:49px;top:-18px;border-radius:8px}.antenna:after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--yellow);left:-4px;top:-8px;box-shadow:0 0 20px rgba(255,212,91,.75)}
+.bubble{position:absolute;right:-7px;top:4px;background:#fff;color:#171923;padding:10px 12px;border-radius:16px 16px 16px 4px;font-size:12px;font-weight:900;max-width:125px;z-index:5;transform:rotate(3deg)}
+.session{padding-bottom:8px}
+.sessionHead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.stageTitle{font-size:13px;font-weight:950;flex:1}.stageTitle small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.progress{height:8px;border-radius:999px;background:#282a38;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--purple),#45d7b0);transition:.35s}
+.gameCard{min-height:calc(100dvh - 118px);background:linear-gradient(180deg,#1b1d29,#13151e);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.gameTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.mission{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:1000;color:#c6bfff;background:#292540;border:1px solid #3d3760;padding:7px 9px;border-radius:999px}.hint{font-size:12px;color:var(--muted);font-weight:800}
+.gameTitle{font-size:28px;line-height:1.04;letter-spacing:-.04em;margin:5px 0 3px}.gameSub{color:var(--muted);font-size:13px;margin:0 0 14px}
+.playfield{flex:1;min-height:330px;background:linear-gradient(180deg,#262938,#202230);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:14px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.actionRow{display:flex;gap:9px;margin-top:12px}.action{flex:1;border:0;border-radius:17px;padding:14px;background:var(--purple);font-weight:950;cursor:pointer}.action.ghost{background:#292b39;color:#d9dae1}.action:disabled{opacity:.45}
+.toast{position:absolute;left:15px;right:15px;bottom:15px;padding:13px 14px;border-radius:16px;font-size:13px;font-weight:850;z-index:20;transform:translateY(130%);transition:.25s;box-shadow:0 10px 30px rgba(0,0,0,.25)}.toast.show{transform:translateY(0)}.toast.good{background:#17392d;color:#88efc6;border:1px solid #245744}.toast.bad{background:#46212a;color:#ffb1ba;border:1px solid #6c303d}
+.pizzaArea{display:grid;grid-template-columns:1fr;place-items:center;flex:1}.order{background:#fff;color:#191a20;border-radius:19px 19px 19px 5px;padding:10px 13px;font-weight:950;font-size:14px;margin-bottom:8px;box-shadow:0 10px 25px rgba(0,0,0,.18)}
+#pizzaSvg{width:238px;height:238px;filter:drop-shadow(0 16px 18px rgba(0,0,0,.28))}
+.slice{cursor:pointer;stroke:#7a3d23;stroke-width:3;transition:.17s;transform-origin:120px 120px}.slice.selected{filter:brightness(1.18);transform:scale(.93)}.slice:hover{filter:brightness(1.08)}
+.plate{width:270px;height:34px;border-radius:50%;background:#d6d7e3;box-shadow:inset 0 -7px 0 #b7b9c7;margin-top:-23px}
+.counter{font-size:13px;font-weight:900;color:#ddd;margin-top:7px}
+.monsters{display:flex;gap:7px;justify-content:center;align-items:flex-end;flex:1;padding-top:6px}.monster{flex:1;max-width:96px;background:#343747;border:1px solid #45495c;border-radius:24px 24px 18px 18px;padding:11px 6px 9px;text-align:center;cursor:pointer;transition:.14s;min-height:137px;display:flex;flex-direction:column;justify-content:flex-end}.monster:active{transform:scale(.96)}.monsterFace{font-size:47px;line-height:1}.monsterCount{margin-top:4px;font-weight:1000;font-size:22px}.monster small{color:#afb2c1;font-size:10px}
+.cookiePile{text-align:center;background:#181a23;border-radius:17px;padding:10px;margin-top:10px}.cookiePile .cookies{font-size:28px;line-height:1.15;min-height:33px;word-break:break-all}.cookiePile b{font-size:13px}
+.gates{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;align-items:end;flex:1;padding:18px 0 8px}.gate{height:170px;border:2px solid #4d5166;background:linear-gradient(180deg,#2b2e3d,#1a1c26);border-radius:50px 50px 14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;position:relative;overflow:hidden;transition:.16s}.gate:before{content:"";position:absolute;inset:11px;border-radius:40px 40px 8px 8px;border:2px dashed rgba(255,255,255,.08)}.gate:active{transform:scale(.96)}.gate span{font-size:19px;font-weight:1000;z-index:2}.gate small{font-size:10px;color:#9da1b4;z-index:2}.gate.correct{border-color:var(--green);box-shadow:0 0 25px rgba(49,213,139,.3)}.gate.wrong{border-color:var(--red);animation:shake .28s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.rocket{font-size:46px;text-align:center;transition:.35s;filter:drop-shadow(0 10px 14px rgba(0,0,0,.35))}.rocket.fly{transform:translateY(-28px) scale(1.12)}
+.combo{text-align:center;color:var(--yellow);font-size:13px;font-weight:950;height:20px}
+.builder{display:grid;grid-template-columns:1fr;gap:12px;flex:1;align-content:center}.plot{width:220px;height:150px;background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(255,255,255,.06) 24px),repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,255,255,.06) 24px),#23362d;border:7px solid #a77b4f;border-radius:8px;margin:0 auto;transition:.25s;box-shadow:0 14px 25px rgba(0,0,0,.25);position:relative}.plot:after{content:"🌿";font-size:46px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.dims{display:grid;grid-template-columns:1fr 1fr;gap:8px}.dim{background:#191b25;border-radius:17px;padding:10px;text-align:center}.dim b{display:block;font-size:13px}.stepper{display:flex;justify-content:center;align-items:center;gap:11px;margin-top:6px}.stepper button{width:37px;height:37px;border-radius:12px;border:1px solid var(--line);background:#2c2f3e;font-size:21px;font-weight:1000}.stepper span{font-size:23px;font-weight:1000;width:36px}.target{text-align:center;font-size:14px;font-weight:900;color:#ddd}.target strong{color:var(--yellow);font-size:21px}
+.bossField{align-items:center;justify-content:center;text-align:center}.boss{font-size:86px;filter:drop-shadow(0 15px 25px rgba(0,0,0,.35));animation:bossFloat 2s ease-in-out infinite}.boss.hit{animation:bossHit .3s}.bossBar{width:80%;height:13px;border-radius:999px;background:#34252d;overflow:hidden;margin:8px auto 17px;border:1px solid #53343e}.bossBar div{height:100%;width:100%;background:linear-gradient(90deg,#ff5f71,#ff9b70);transition:.35s}
+@keyframes bossFloat{50%{transform:translateY(-6px)}}@keyframes bossHit{50%{transform:scale(.86) rotate(8deg)}}
+.bossChallenge{width:100%;background:#191b25;border:1px solid var(--line);border-radius:20px;padding:14px}.bossOpts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.bossOpt{border:1px solid #3a3d4e;background:#282b38;padding:13px 8px;border-radius:14px;font-weight:950}.bossOpt:active{transform:scale(.96)}
+.reward{padding:22px;text-align:center;min-height:calc(100dvh - 100px);display:flex;flex-direction:column;justify-content:center}.reward h1{font-size:34px}.bigReward{font-size:74px;margin:7px}.rewardGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.rewardBox{background:#202332;border:1px solid var(--line);border-radius:18px;padding:13px}.rewardBox b{font-size:23px;display:block}.rewardBox span{font-size:11px;color:var(--muted)}
+.parents{padding:18px}.parents h1{font-size:30px}.back{border:1px solid var(--line);background:#222531;border-radius:14px;padding:10px 12px;font-weight:900}.statsGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.statCard{background:#202332;border:1px solid var(--line);border-radius:18px;padding:13px}.statCard b{display:block;font-size:23px}.statCard small{color:var(--muted)}.skill{background:#202332;border:1px solid var(--line);border-radius:17px;padding:12px;margin-top:8px}.skillLine{display:flex;justify-content:space-between;font-size:12px;font-weight:900}.skillTrack{height:7px;background:#303341;border-radius:99px;overflow:hidden;margin-top:8px}.skillFill{height:100%;background:linear-gradient(90deg,var(--purple),var(--green))}
+.confetti{position:fixed;width:9px;height:13px;border-radius:3px;z-index:100;pointer-events:none;animation:fall 900ms ease-out forwards}@keyframes fall{to{transform:translate(var(--dx),var(--dy)) rotate(540deg);opacity:0}}
+.flash{position:absolute;inset:0;background:rgba(49,213,139,.18);opacity:0;pointer-events:none}.flash.go{animation:flash .35s}@keyframes flash{50%{opacity:1}}
 </style>
 </head>
 <body>
 <div class="app">
-  <section id="home" class="home">
-    <div class="hero">
-      <div class="eyebrow">MVP · Cataluña</div>
-      <h1>10 minutos de pantalla que sí suman.</h1>
-      <p>Un feed corto de matemáticas que decide qué debe practicar el niño según el currículo y lo que va acertando o fallando.</p>
-      <div class="selectbox"><span>4.º Primaria</span><span>⌄</span></div>
-      <div class="selectbox"><span>Matemáticas</span><span>⌄</span></div>
-      <button class="cta" id="startBtn">JUGAR · sesión de hoy →</button>
-      <button class="parentLink" id="parentBtn">Ver modo padres</button>
+  <div class="topbar">
+    <div class="logo">ne<em>x</em>o</div>
+    <div class="hud">
+      <div class="hudPill">⚡ <span id="hudEnergy">0</span></div>
+      <div class="hudPill">⭐ <span id="hudStars">0</span></div>
+    </div>
+  </div>
+
+  <section id="home" class="shell home">
+    <div>
+      <div class="heroTag">4.º Primaria · Matemáticas</div>
+      <h1>Hoy no estudias.<br>Hoy juegas.</h1>
+      <p class="lead">Cinco misiones cortas. Nexo decide qué toca y la sesión termina cuando completas el boss.</p>
+      <div class="companionWrap">
+        <div class="orbit">
+          <div id="homeBot" class="bot"><div class="antenna"></div><i class="eye l"></i><i class="eye r"></i></div>
+          <div class="bubble">¿Vamos a por el boss?</div>
+        </div>
+      </div>
+      <div class="homeGrid">
+        <div class="choice"><small>Curso</small><b>4.º Primaria</b></div>
+        <div class="choice"><small>Comunidad</small><b>Cataluña</b></div>
+      </div>
+    </div>
+    <div>
+      <button id="startBtn" class="primary">JUGAR · 5 MISIONES</button>
+      <button id="parentsBtn" class="secondary">Modo padres</button>
     </div>
   </section>
 
-  <section id="game" class="hidden">
-    <div class="top"><div class="brand">ne<b>x</b>o</div><div class="stats"><div class="pill">🔥 <span id="streak">1</span></div><div class="pill">⚡ <span id="xp">0</span> XP</div></div></div>
-    <div class="progressWrap"><div class="progressMeta"><span>Sesión de hoy</span><span id="stepLabel">1/10</span></div><div class="track"><div class="bar" id="bar"></div></div></div>
-    <div class="card">
-      <div class="kicker"><span class="tag" id="tag">Cálculo</span><span class="difficulty" id="difficulty">●●○</span></div>
-      <div class="visual" id="visual"></div>
-      <h1 id="question"></h1>
-      <div class="sub" id="sub"></div>
-      <div class="answers" id="answers"></div>
-      <div class="feedback" id="feedback"></div>
-      <button class="next" id="nextBtn">Siguiente →</button>
+  <section id="game" class="session hidden">
+    <div class="sessionHead">
+      <div class="stageTitle"><small>Sesión de hoy</small><span id="stageName">Misión 1</span></div>
+      <div style="width:45%"><div class="progress"><div id="progressBar"></div></div></div>
+    </div>
+    <div class="gameCard">
+      <div class="flash" id="flash"></div>
+      <div class="gameTop">
+        <div id="missionTag" class="mission">Fracciones</div>
+        <div id="missionHint" class="hint">Toca para jugar</div>
+      </div>
+      <h2 id="gameTitle" class="gameTitle"></h2>
+      <p id="gameSub" class="gameSub"></p>
+      <div id="playfield" class="playfield"></div>
+      <div id="toast" class="toast"></div>
     </div>
   </section>
 
-  <section id="done" class="hidden">
-    <div class="card done">
-      <div class="big">🏆</div>
-      <div class="tag">Sesión terminada</div>
-      <h1>Buen trabajo. Por hoy, se acabó.</h1>
-      <div class="score"><span id="finalCorrect">0</span>/10</div>
-      <p class="sub">Mañana el feed volverá a mezclar contenido nuevo, repaso y aquello que hoy haya costado más.</p>
-      <div class="miniGrid"><div class="mini"><b id="finalXp">0</b><span>XP ganados</span></div><div class="mini"><b id="finalWeak">—</b><span>refuerzo prioritario</span></div></div>
-      <button class="again" id="homeBtn">Volver al inicio</button>
+  <section id="reward" class="shell reward hidden">
+    <div class="heroTag" style="margin:auto">Sesión completada</div>
+    <div class="bigReward">🎁</div>
+    <h1>Boss derrotado.</h1>
+    <p class="lead">Nexo ha ganado energía y mañana volverá con retos adaptados a lo que hoy ha costado más.</p>
+    <div class="rewardGrid">
+      <div class="rewardBox"><b id="rewardStars">0</b><span>estrellas ganadas</span></div>
+      <div class="rewardBox"><b id="rewardEnergy">0</b><span>energía conseguida</span></div>
+      <div class="rewardBox"><b id="rewardStrong">—</b><span>mejor hoy</span></div>
+      <div class="rewardBox"><b id="rewardWeak">—</b><span>reforzaremos</span></div>
     </div>
+    <button id="rewardHome" class="primary">Volver al inicio</button>
   </section>
 
-  <section id="parents" class="dashboard hidden">
-    <div class="top"><button class="back" id="backBtn">← Volver</button><div class="brand">ne<b>x</b>o</div></div>
-    <h1>Progreso de Alex</h1>
-    <p class="sub">4.º Primaria · Matemáticas · Cataluña</p>
-    <div class="miniGrid"><div class="mini"><b id="pSessions">0</b><span>sesiones</span></div><div class="mini"><b id="pAccuracy">—</b><span>acierto global</span></div></div>
-    <h2 style="margin:24px 0 8px;font-size:18px">Mapa de aprendizaje</h2>
-    <div id="skillList"></div>
-    <div class="note">V0: este panel guarda el progreso en este navegador. El producto final separaría perfil infantil y perfil familiar, y el motor usaría un mapa curricular mucho más granular.</div>
+  <section id="parents" class="shell parents hidden">
+    <button id="backHome" class="back">← Volver</button>
+    <h1>Así va Alex</h1>
+    <p class="lead">Tú ves progreso. Él ve juegos.</p>
+    <div class="statsGrid" style="margin-top:16px">
+      <div class="statCard"><b id="pSessions">0</b><small>sesiones</small></div>
+      <div class="statCard"><b id="pStars">0</b><small>estrellas</small></div>
+    </div>
+    <h3 style="margin:20px 0 4px">Mapa de aprendizaje</h3>
+    <div id="skillsList"></div>
   </section>
 </div>
+
 <script>
-const skills = {
-  place:{name:'Numeración hasta 9.999', area:'Sentido numérico', mastery:55},
-  mult:{name:'Multiplicación y tablas', area:'Operaciones', mastery:50},
-  div:{name:'División y reparto', area:'Operaciones', mastery:45},
-  frac:{name:'Fracciones sencillas', area:'Sentido numérico', mastery:42},
-  measure:{name:'Medidas y unidades', area:'Sentido de la medida', mastery:50},
-  perimeter:{name:'Perímetro', area:'Sentido espacial', mastery:48},
-  money:{name:'Euros, céntimos y cambio', area:'Educación financiera', mastery:52},
-  pattern:{name:'Patrones y regularidades', area:'Sentido algebraico', mastery:50},
-  data:{name:'Datos y gráficos', area:'Sentido estocástico', mastery:47},
-  prob:{name:'Probabilidad intuitiva', area:'Sentido estocástico', mastery:50}
-};
-const saved = JSON.parse(localStorage.getItem('nexo4p') || '{}');
-if(saved.skills){Object.keys(skills).forEach(k=>{if(saved.skills[k]!=null) skills[k].mastery=saved.skills[k]})}
-let state={step:0,correct:0,xp:saved.xp||0,answered:false,session:[],results:[],sessions:saved.sessions||0,totalQ:saved.totalQ||0,totalCorrect:saved.totalCorrect||0};
-const $=id=>document.getElementById(id);
-function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-function mc(correct, distractors){return shuffle([correct,...distractors]).slice(0,4)}
-const generators={
- place(){let n=rnd(1200,9899), digit=Math.floor(n/100)%10; return {skill:'place',tag:'Números',level:2,visual:`${n.toLocaleString('es-ES')}<small>Valor posicional</small>`,q:`¿Cuánto vale la cifra ${digit} en este número?`,sub:'Piensa en unidades, decenas, centenas y millares.',a:String(digit*100),opts:mc(String(digit*100),[String(digit),String(digit*10),String(digit*1000)]),why:`La cifra ${digit} está en la posición de las centenas: vale ${digit*100}.`}},
- mult(){let a=rnd(3,9),b=rnd(4,9);let c=a*b; return {skill:'mult',tag:'Cálculo',level:2,visual:`${a} × ${b}<small>Reto rápido</small>`,q:'¿Cuál es el resultado?',sub:'Intenta resolverlo mentalmente.',a:String(c),opts:mc(String(c),[String(c+a),String(c-b),String(c+10)]),why:`${a} grupos de ${b} hacen ${c}.`}},
- div(){let b=rnd(3,9),q=rnd(3,10),a=b*q; return {skill:'div',tag:'Reparto',level:2,visual:`🍓 ${a} fresas<br><small>repartidas entre ${b} personas</small>`,q:'¿Cuántas fresas recibe cada persona?',sub:'Todas reciben exactamente lo mismo.',a:String(q),opts:mc(String(q),[String(q+1),String(Math.max(1,q-1)),String(b)]),why:`${a} ÷ ${b} = ${q}.`}},
- frac(){let den=[4,6,8][rnd(0,2)],num=rnd(1,den-1); return {skill:'frac',tag:'Fracciones',level:2,visual:`<span class="fraction"><span>${num}</span><span>${den}</span></span><small>Parte de un todo</small>`,q:`Si una pizza tiene ${den} porciones iguales y comes ${num}, ¿qué fracción has comido?`,sub:'El denominador indica cuántas partes iguales hay en total.',a:`${num}/${den}`,opts:mc(`${num}/${den}`,[`${den}/${num}`,`${num}/${den+1}`,`${Math.max(1,num-1)}/${den}`]),why:`Has comido ${num} de ${den} partes iguales: ${num}/${den}.`}},
- measure(){let cm=rnd(2,8)*100; return {skill:'measure',tag:'Medida',level:1,visual:`📏 ${cm} cm<small>Longitud</small>`,q:'¿Cuántos metros son?',sub:'100 centímetros equivalen a 1 metro.',a:String(cm/100)+' m',opts:mc(String(cm/100)+' m',[String(cm/10)+' m',String(cm)+' m',String(cm/1000)+' m']),why:`${cm} ÷ 100 = ${cm/100}. Por tanto, ${cm} cm = ${cm/100} m.`}},
- perimeter(){let a=rnd(3,9),b=rnd(2,7),p=2*(a+b);return {skill:'perimeter',tag:'Geometría',level:2,visual:`<div class="shape"></div><small>${a} cm × ${b} cm</small>`,q:'¿Cuál es el perímetro del rectángulo?',sub:'Suma la longitud de sus cuatro lados.',a:String(p)+' cm',opts:mc(String(p)+' cm',[String(a*b)+' cm',String(a+b)+' cm',String(p+2)+' cm']),why:`${a}+${b}+${a}+${b} = ${p} cm.`}},
- money(){let price=rnd(21,47);let pay=50;let ch=pay-price;return {skill:'money',tag:'Dinero',level:2,visual:`<div class="coins">💶 🛒</div><small>Pagas con 50 € · cuesta ${price} €</small>`,q:'¿Cuánto cambio deben devolverte?',sub:'Resta el precio al dinero entregado.',a:String(ch)+' €',opts:mc(String(ch)+' €',[String(ch+2)+' €',String(price)+' €',String(50+price)+' €']),why:`50 − ${price} = ${ch} €.`}},
- pattern(){let start=rnd(2,8),step=rnd(3,7);let arr=[start,start+step,start+2*step,start+3*step];let ans=start+4*step;return {skill:'pattern',tag:'Patrones',level:2,visual:`${arr.join(' · ')} · ?<small>Descubre la regla</small>`,q:'¿Qué número viene después?',sub:'Busca cuánto aumenta de un término al siguiente.',a:String(ans),opts:mc(String(ans),[String(ans+step),String(ans-1),String(ans+1)]),why:`La serie aumenta de ${step} en ${step}. El siguiente es ${ans}.`}},
- data(){let a=rnd(5,10),b=rnd(3,8),c=rnd(2,7);let max=Math.max(a,b,c);let name=max===a?'fútbol':max===b?'baloncesto':'natación';return {skill:'data',tag:'Datos',level:1,visual:`⚽ ${'▮'.repeat(a)}<br>🏀 ${'▮'.repeat(b)}<br>🏊 ${'▮'.repeat(c)}<small>Cada barra = 1 voto</small>`,q:'¿Qué actividad tiene más votos?',sub:'Compara la longitud de las tres barras.',a:name,opts:shuffle(['fútbol','baloncesto','natación','tienen los mismos']),why:`La barra más larga corresponde a ${name}.`}},
- prob(){let red=rnd(4,8),blue=rnd(1,3);return {skill:'prob',tag:'Azar',level:1,visual:`🔴 × ${red} &nbsp;&nbsp; 🔵 × ${blue}<small>Bolsa de fichas</small>`,q:'Sin mirar, ¿qué color es más probable sacar?',sub:'Compara cuántas fichas hay de cada color.',a:'rojo',opts:shuffle(['rojo','azul','igual de probable','imposible saberlo']),why:`Hay ${red} rojas y ${blue} azules, así que es más probable sacar una roja.`}}
-};
-function buildSession(){
-  const keys=Object.keys(skills);
-  const weak=[...keys].sort((a,b)=>skills[a].mastery-skills[b].mastery);
-  const base=shuffle(keys).slice(0,6);
-  const reinforce=weak.slice(0,4);
-  state.session=shuffle([...base,...reinforce]).slice(0,10);
-  while(state.session.length<10) state.session.push(keys[rnd(0,keys.length-1)]);
-}
-function showScreen(id){['home','game','done','parents'].forEach(x=>$(x).classList.add('hidden'));$(id).classList.remove('hidden')}
-function start(){state.step=0;state.correct=0;state.results=[];buildSession();showScreen('game');render()}
-function render(){
-  state.answered=false; $('feedback').className='feedback';$('nextBtn').className='next';
-  const key=state.session[state.step], item=generators[key](); state.current=item;
-  $('tag').textContent=item.tag;$('difficulty').textContent=item.level===1?'●○○':item.level===2?'●●○':'●●●';$('visual').innerHTML=item.visual;$('question').textContent=item.q;$('sub').textContent=item.sub;$('stepLabel').textContent=`${state.step+1}/10`;$('bar').style.width=`${state.step*10}%`;$('xp').textContent=state.xp;
-  $('answers').innerHTML=''; item.opts.forEach(opt=>{let b=document.createElement('button');b.className='answer';b.textContent=opt;b.onclick=()=>answer(b,opt);$('answers').appendChild(b)})
-}
-function answer(btn,opt){if(state.answered)return;state.answered=true;const item=state.current;const ok=opt===item.a;document.querySelectorAll('.answer').forEach(b=>{b.disabled=true;if(b.textContent===item.a)b.classList.add('correct')});if(!ok)btn.classList.add('wrong');
-  const delta=ok?8:-6;skills[item.skill].mastery=Math.max(5,Math.min(100,skills[item.skill].mastery+delta));state.totalQ++;if(ok){state.correct++;state.totalCorrect++;state.xp+=10} else state.xp+=2;
-  state.results.push({skill:item.skill,ok});$('feedback').textContent=(ok?'✓ Correcto. ':'Casi. ')+item.why;$('feedback').className='feedback show '+(ok?'good':'bad');$('nextBtn').className='next show';$('xp').textContent=state.xp;
-}
-function next(){state.step++; if(state.step>=10){finish()}else render()}
-function finish(){state.sessions++;save();$('bar').style.width='100%';$('finalCorrect').textContent=state.correct;$('finalXp').textContent=state.correct*10+(10-state.correct)*2;const misses=state.results.filter(r=>!r.ok).map(r=>r.skill);const weak=misses[0]||Object.keys(skills).sort((a,b)=>skills[a].mastery-skills[b].mastery)[0];$('finalWeak').textContent=skills[weak].name;showScreen('done')}
-function save(){localStorage.setItem('nexo4p',JSON.stringify({skills:Object.fromEntries(Object.entries(skills).map(([k,v])=>[k,v.mastery])),xp:state.xp,sessions:state.sessions,totalQ:state.totalQ,totalCorrect:state.totalCorrect}))}
-function parents(){showScreen('parents');$('pSessions').textContent=state.sessions;$('pAccuracy').textContent=state.totalQ?Math.round(100*state.totalCorrect/state.totalQ)+'%':'—';const list=$('skillList');list.innerHTML='';Object.values(skills).sort((a,b)=>a.mastery-b.mastery).forEach(s=>{let d=document.createElement('div');d.className='skillRow';d.innerHTML=`<div class="skillTop"><span>${s.name}</span><span>${Math.round(s.mastery)}%</span></div><div style="font-size:11px;color:#7b7f89;margin-top:3px">${s.area}</div><div class="skillTrack"><div class="skillFill" style="width:${s.mastery}%"></div></div>`;list.appendChild(d)})}
-$('startBtn').onclick=start;$('nextBtn').onclick=next;$('parentBtn').onclick=parents;$('backBtn').onclick=()=>showScreen('home');$('homeBtn').onclick=()=>showScreen('home');
-$('xp').textContent=state.xp;$('streak').textContent=Math.max(1,state.sessions);
+(function(){
+  var ids=function(x){return document.getElementById(x)};
+  var data=JSON.parse(localStorage.getItem("nexo-v1")||"{}");
+  var skills=data.skills||{frac:48,div:44,mult:52,peri:46};
+  var totalStars=data.totalStars||0, sessions=data.sessions||0, energy=data.energy||0;
+  var stage=0, sessionStars=0, sessionEnergy=0, results=[];
+  var games=["pizza","division","turbo","builder","boss"];
+  var current={};
+  var audioCtx=null;
+
+  function save(){
+    localStorage.setItem("nexo-v1",JSON.stringify({skills:skills,totalStars:totalStars,sessions:sessions,energy:energy}));
+  }
+  function sound(type){
+    try{
+      if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+      var o=audioCtx.createOscillator(),g=audioCtx.createGain();
+      o.connect(g);g.connect(audioCtx.destination);
+      o.type=type==="good"?"sine":"square";
+      o.frequency.value=type==="good"?680:180;
+      g.gain.setValueAtTime(.055,audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.18);
+      o.start();o.stop(audioCtx.currentTime+.18);
+    }catch(e){}
+  }
+  function show(id){
+    ["home","game","reward","parents"].forEach(function(x){ids(x).classList.add("hidden")});
+    ids(id).classList.remove("hidden");
+  }
+  function hud(){
+    ids("hudEnergy").textContent=energy+sessionEnergy;
+    ids("hudStars").textContent=totalStars+sessionStars;
+  }
+  function toast(msg,good){
+    var t=ids("toast");t.textContent=msg;t.className="toast show "+(good?"good":"bad");
+    setTimeout(function(){t.className="toast"},1200);
+  }
+  function flash(){
+    var f=ids("flash");f.classList.remove("go");void f.offsetWidth;f.classList.add("go");
+  }
+  function confetti(){
+    var colors=["#7967ff","#31d58b","#ffd45b","#54b7ff","#ff5f71"];
+    for(var i=0;i<24;i++){
+      var d=document.createElement("div");d.className="confetti";
+      d.style.left=(45+Math.random()*10)+"vw";d.style.top="45vh";
+      d.style.background=colors[i%colors.length];
+      d.style.setProperty("--dx",((Math.random()-.5)*260)+"px");
+      d.style.setProperty("--dy",(110+Math.random()*270)+"px");
+      document.body.appendChild(d);
+      setTimeout((function(x){return function(){x.remove()}})(d),1000);
+    }
+  }
+  function rewardSkill(skill,amount){
+    skills[skill]=Math.max(5,Math.min(100,(skills[skill]||40)+amount));
+    results.push({skill:skill,score:amount});
+  }
+  function winMini(skill,msg){
+    sound("good");flash();confetti();sessionStars+=1;sessionEnergy+=20;rewardSkill(skill,6);hud();toast(msg||"¡Perfecto!",true);
+  }
+  function miss(skill,msg){
+    sound("bad");rewardSkill(skill,-2);toast(msg||"Prueba otra vez",false);
+  }
+  function start(){
+    stage=0;sessionStars=0;sessionEnergy=0;results=[];hud();show("game");loadStage();
+  }
+  function nextStage(delay){
+    setTimeout(function(){
+      stage++;
+      if(stage>=games.length){finish()}else{loadStage()}
+    },delay||650);
+  }
+  function loadStage(){
+    ids("progressBar").style.width=(stage/games.length*100)+"%";
+    ids("stageName").textContent="Misión "+(stage+1)+" de "+games.length;
+    ids("playfield").innerHTML="";
+    var g=games[stage];
+    if(g==="pizza") pizza();
+    if(g==="division") division();
+    if(g==="turbo") turbo();
+    if(g==="builder") builder();
+    if(g==="boss") boss();
+  }
+
+  function polar(cx,cy,r,angle){
+    var a=(angle-90)*Math.PI/180;return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)};
+  }
+  function arcPath(cx,cy,r,start,end){
+    var s=polar(cx,cy,r,end),e=polar(cx,cy,r,start),large=end-start<=180?0:1;
+    return "M "+cx+" "+cy+" L "+s.x+" "+s.y+" A "+r+" "+r+" 0 "+large+" 0 "+e.x+" "+e.y+" Z";
+  }
+  function pizza(){
+    ids("missionTag").textContent="Pizzería";
+    ids("missionHint").textContent="Toca las porciones";
+    ids("gameTitle").textContent="Sirve exactamente 3/8";
+    ids("gameSub").textContent="La pizza es el problema. Selecciona lo que pide el cliente.";
+    var pf=ids("playfield");
+    pf.innerHTML='<div class="pizzaArea"><div class="order">🧑‍🍳 Pedido: <strong>3/8</strong> de pizza</div><svg id="pizzaSvg" viewBox="0 0 240 240"></svg><div class="plate"></div><div class="counter"><span id="sliceCount">0</span> de 8 porciones</div></div><div class="actionRow"><button id="clearPizza" class="action ghost">Limpiar</button><button id="servePizza" class="action">SERVIR 🍕</button></div>';
+    var svg=ids("pizzaSvg"),sel=[];
+    for(var i=0;i<8;i++){
+      var p=document.createElementNS("http://www.w3.org/2000/svg","path");
+      p.setAttribute("d",arcPath(120,120,103,i*45,(i+1)*45));
+      p.setAttribute("fill",i%2?"#f39b45":"#f5ad54");
+      p.setAttribute("class","slice");
+      p.setAttribute("data-i",i);
+      var pepper=document.createElementNS("http://www.w3.org/2000/svg","circle");
+      var pt=polar(120,120,60,i*45+22.5);pepper.setAttribute("cx",pt.x);pepper.setAttribute("cy",pt.y);pepper.setAttribute("r","8");pepper.setAttribute("fill","#bd3f3f");pepper.setAttribute("pointer-events","none");
+      p.onclick=function(){
+        var n=Number(this.getAttribute("data-i")),ix=sel.indexOf(n);
+        if(ix>=0){sel.splice(ix,1);this.classList.remove("selected")}else{sel.push(n);this.classList.add("selected")}
+        ids("sliceCount").textContent=sel.length;
+      };
+      svg.appendChild(p);svg.appendChild(pepper);
+    }
+    ids("clearPizza").onclick=function(){sel=[];Array.from(svg.querySelectorAll(".slice")).forEach(function(x){x.classList.remove("selected")});ids("sliceCount").textContent=0};
+    ids("servePizza").onclick=function(){
+      if(sel.length===3){winMini("frac","¡Pedido perfecto! 3 de 8.");ids("servePizza").disabled=true;nextStage(900)}
+      else{miss("frac",sel.length<3?"Faltan porciones.":"Te has pasado. Quita alguna.");}
+    };
+  }
+
+  function division(){
+    ids("missionTag").textContent="Reparto";
+    ids("missionHint").textContent="Dales galletas";
+    ids("gameTitle").textContent="12 galletas. 3 monstruos.";
+    ids("gameSub").textContent="Toca un monstruo para darle la siguiente galleta. Todos quieren lo mismo.";
+    var pf=ids("playfield");
+    pf.innerHTML='<div class="monsters" id="monsters"></div><div class="cookiePile"><div class="cookies" id="cookies">🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪</div><b>Quedan <span id="cookieLeft">12</span></b></div><div class="actionRow"><button id="resetCookies" class="action ghost">Reiniciar</button><button id="checkCookies" class="action">COMPROBAR</button></div>';
+    var left=12,counts=[0,0,0],faces=["👾","👹","🤖"];
+    function draw(){
+      ids("cookieLeft").textContent=left;
+      ids("cookies").textContent="🍪".repeat(left);
+      Array.from(ids("monsters").children).forEach(function(m,i){m.querySelector(".monsterCount").textContent=counts[i]});
+    }
+    faces.forEach(function(face,i){
+      var m=document.createElement("button");m.className="monster";
+      m.innerHTML='<div class="monsterFace">'+face+'</div><div class="monsterCount">0</div><small>galletas</small>';
+      m.onclick=function(){
+        if(left<=0)return;
+        left--;counts[i]++;draw();sound("tap");
+      };
+      ids("monsters").appendChild(m);
+    });
+    ids("resetCookies").onclick=function(){left=12;counts=[0,0,0];draw()};
+    ids("checkCookies").onclick=function(){
+      if(left>0){toast("Todavía quedan "+left+" galletas.",false);return}
+      if(counts[0]===4&&counts[1]===4&&counts[2]===4){winMini("div","¡Reparto justo! 12 ÷ 3 = 4.");ids("checkCookies").disabled=true;nextStage(950)}
+      else{miss("div","No están iguales. Reinicia y reparte justo.");}
+    };
+  }
+
+  function turbo(){
+    ids("missionTag").textContent="Turbo";
+    ids("missionHint").textContent="3 puertas seguidas";
+    ids("gameTitle").textContent="Carga el cohete";
+    ids("gameSub").textContent="Toca la multiplicación que produce la energía exacta.";
+    var pf=ids("playfield"),round=0,combo=0;
+    pf.innerHTML='<div class="combo" id="combo"></div><div class="gates" id="gates"></div><div id="rocket" class="rocket">🚀</div>';
+    var rounds=[
+      {target:42,correct:"6 × 7",opts:["6 × 7","8 × 6","9 × 5"]},
+      {target:48,correct:"8 × 6",opts:["7 × 7","8 × 6","9 × 6"]},
+      {target:36,correct:"4 × 9",opts:["5 × 8","6 × 7","4 × 9"]}
+    ];
+    function drawRound(){
+      var r=rounds[round];ids("gameTitle").textContent="Necesitas "+r.target+" de energía";
+      ids("gates").innerHTML="";
+      r.opts.sort(function(){return Math.random()-.5}).forEach(function(opt){
+        var b=document.createElement("button");b.className="gate";b.innerHTML='<span>'+opt+'</span><small>PUERTA</small>';
+        b.onclick=function(){
+          if(opt===r.correct){
+            b.classList.add("correct");sound("good");combo++;ids("combo").textContent="⚡ COMBO x"+combo;ids("rocket").classList.add("fly");
+            setTimeout(function(){ids("rocket").classList.remove("fly");round++;if(round>=rounds.length){winMini("mult","¡Turbo completo!");nextStage(900)}else drawRound()},520);
+          }else{
+            b.classList.add("wrong");miss("mult","Esa puerta no da "+r.target+".");setTimeout(function(){b.classList.remove("wrong")},350);
+          }
+        };
+        ids("gates").appendChild(b);
+      });
+    }
+    drawRound();
+  }
+
+  function builder(){
+    ids("missionTag").textContent="Constructor";
+    ids("missionHint").textContent="Ajusta el jardín";
+    ids("gameTitle").textContent="Perímetro objetivo: 18 m";
+    ids("gameSub").textContent="Cambia largo y ancho hasta construir un jardín cuyo borde mida 18 metros.";
+    var pf=ids("playfield"),w=3,h=3;
+    pf.innerHTML='<div class="builder"><div class="target">Necesitamos <strong>18 m</strong> de valla</div><div id="plot" class="plot"></div><div class="dims"><div class="dim"><b>LARGO</b><div class="stepper"><button data-x="w" data-d="-1">−</button><span id="wVal">3</span><button data-x="w" data-d="1">+</button></div></div><div class="dim"><b>ANCHO</b><div class="stepper"><button data-x="h" data-d="-1">−</button><span id="hVal">3</span><button data-x="h" data-d="1">+</button></div></div></div><div class="target">Perímetro actual: <strong id="periNow">12 m</strong></div></div><div class="actionRow"><button id="buildBtn" class="action">CONSTRUIR 🌳</button></div>';
+    function draw(){
+      ids("wVal").textContent=w;ids("hVal").textContent=h;ids("periNow").textContent=(2*(w+h))+" m";
+      ids("plot").style.width=(135+w*16)+"px";ids("plot").style.height=(88+h*13)+"px";
+    }
+    Array.from(pf.querySelectorAll(".stepper button")).forEach(function(b){
+      b.onclick=function(){
+        var d=Number(this.getAttribute("data-d")),x=this.getAttribute("data-x");
+        if(x==="w")w=Math.max(2,Math.min(8,w+d));else h=Math.max(2,Math.min(8,h+d));draw();
+      };
+    });
+    ids("buildBtn").onclick=function(){
+      if(2*(w+h)===18){winMini("peri","¡Cerrado! "+w+" + "+h+" + "+w+" + "+h+" = 18.");ids("buildBtn").disabled=true;nextStage(950)}
+      else{miss("peri","Ese jardín necesita "+(2*(w+h))+" m. Busca exactamente 18.");}
+    };
+    draw();
+  }
+
+  function boss(){
+    ids("missionTag").textContent="BOSS FINAL";
+    ids("missionHint").textContent="3 escudos";
+    ids("gameTitle").textContent="Derrota al Glitch";
+    ids("gameSub").textContent="Tres retos rápidos. No hay conocimiento nuevo.";
+    var pf=ids("playfield"),phase=0,hp=100;
+    pf.classList.add("bossField");
+    pf.innerHTML='<div id="bossFace" class="boss">👾</div><div class="bossBar"><div id="bossHp"></div></div><div id="bossChallenge" class="bossChallenge"></div>';
+    var challenges=[
+      {q:"Rompe el escudo de 56",opts:["7 × 8","6 × 8","9 × 6"],a:"7 × 8",skill:"mult"},
+      {q:"El boss tiene 16 orbes y 4 brazos. ¿Cuántos por brazo?",opts:["3","4","5"],a:"4",skill:"div"},
+      {q:"Le queda media barra de energía. ¿Qué fracción es?",opts:["1/2","1/3","2/3"],a:"1/2",skill:"frac"}
+    ];
+    function phaseDraw(){
+      var c=challenges[phase],box=ids("bossChallenge");
+      box.innerHTML='<strong>'+c.q+'</strong><div class="bossOpts"></div>';
+      c.opts.sort(function(){return Math.random()-.5}).forEach(function(opt){
+        var b=document.createElement("button");b.className="bossOpt";b.textContent=opt;
+        b.onclick=function(){
+          if(opt===c.a){
+            sound("good");hp-=34;ids("bossHp").style.width=Math.max(0,hp)+"%";ids("bossFace").classList.add("hit");
+            rewardSkill(c.skill,4);sessionEnergy+=10;hud();setTimeout(function(){ids("bossFace").classList.remove("hit")},320);
+            phase++;
+            if(phase>=challenges.length){
+              sessionStars+=2;sessionEnergy+=30;hud();confetti();toast("¡BOSS DERROTADO!",true);setTimeout(finish,1100);
+            }else setTimeout(phaseDraw,420);
+          }else{miss(c.skill,"El escudo aguanta. Prueba otra.");}
+        };
+        box.querySelector(".bossOpts").appendChild(b);
+      });
+    }
+    phaseDraw();
+  }
+
+  function finish(){
+    ids("progressBar").style.width="100%";
+    sessions++;totalStars+=sessionStars;energy+=sessionEnergy;save();hud();
+    var ordered=Object.keys(skills).sort(function(a,b){return skills[b]-skills[a]});
+    var labels={frac:"Fracciones",div:"División",mult:"Multiplicación",peri:"Perímetro"};
+    ids("rewardStars").textContent="+"+sessionStars;
+    ids("rewardEnergy").textContent="+"+sessionEnergy;
+    ids("rewardStrong").textContent=labels[ordered[0]];
+    ids("rewardWeak").textContent=labels[ordered[ordered.length-1]];
+    show("reward");
+  }
+
+  function parents(){
+    ids("pSessions").textContent=sessions;
+    ids("pStars").textContent=totalStars;
+    var labels={frac:"Fracciones",div:"División y reparto",mult:"Multiplicación",peri:"Perímetro"};
+    var list=ids("skillsList");list.innerHTML="";
+    Object.keys(skills).sort(function(a,b){return skills[a]-skills[b]}).forEach(function(k){
+      var d=document.createElement("div");d.className="skill";
+      d.innerHTML='<div class="skillLine"><span>'+labels[k]+'</span><span>'+Math.round(skills[k])+'%</span></div><div class="skillTrack"><div class="skillFill" style="width:'+skills[k]+'%"></div></div>';
+      list.appendChild(d);
+    });
+    show("parents");
+  }
+
+  ids("startBtn").onclick=start;
+  ids("parentsBtn").onclick=parents;
+  ids("backHome").onclick=function(){show("home")};
+  ids("rewardHome").onclick=function(){show("home")};
+  hud();
+})();
 </script>
 </body>
 </html>
