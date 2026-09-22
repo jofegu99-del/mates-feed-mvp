@@ -1,0 +1,209 @@
+{
+  "version":"1.0",
+  "scope":{"grade":4,"region":"Cataluña","subject":"Matemáticas"},
+  "generation_rule":"The model may vary narrative, values within constraints and visual assets, but may not alter the mathematical structure, cognitive demand or success criterion.",
+  "dimensions":{
+    "mathematical_senses":["NUM","MES","ESP","ALG","EST"],
+    "competency_blocks":["REP","RAP","CON","COR"],
+    "cognitive_levels":["basic","intermediate","superior"]
+  },
+  "templates":[
+    {
+      "id":"ESP_ROUTE_01",
+      "skill":"position_route",
+      "sense":"ESP",
+      "block":"REP",
+      "cognitive":"basic",
+      "gameplay":"tap_path",
+      "prompt_structure":"Move a character through a grid from a specified start to a specified destination using valid adjacent moves.",
+      "evidence":["path_selected","invalid_moves","time_to_first_move"],
+      "variation":["grid_layout","start","destination","obstacles"],
+      "forbidden":["changing to diagonal movement unless explicitly configured"]
+    },
+    {
+      "id":"ESP_ROUTE_02",
+      "skill":"compare_routes",
+      "sense":"ESP",
+      "block":"RAP",
+      "cognitive":"intermediate",
+      "gameplay":"draw_or_select_route",
+      "prompt_structure":"Compare two or more routes on a labelled map and choose or construct a valid route according to a distance or movement constraint.",
+      "evidence":["route","distance_reasoning","corrections"],
+      "variation":["map_theme","distances","number_of_routes"]
+    },
+    {
+      "id":"NUM_DIV_01",
+      "skill":"equal_sharing",
+      "sense":"NUM",
+      "block":"REP",
+      "cognitive":"basic",
+      "gameplay":"distribute_objects",
+      "prompt_structure":"Distribute a divisible quantity equally among 2-6 recipients.",
+      "evidence":["distribution_state","moves","self_correction"],
+      "constraints":{"whole_number_quotient":true}
+    },
+    {
+      "id":"NUM_DIV_02",
+      "skill":"division_error_detection",
+      "sense":"NUM",
+      "block":"RAP",
+      "cognitive":"superior",
+      "gameplay":"repair_distribution",
+      "prompt_structure":"Show an incorrect distribution and require the player to repair it and/or identify what is wrong.",
+      "evidence":["detected_error","repair_moves","final_distribution"]
+    },
+    {
+      "id":"NUM_MULT_01",
+      "skill":"rectangular_multiplication",
+      "sense":"NUM",
+      "block":"CON",
+      "cognitive":"intermediate",
+      "gameplay":"build_array",
+      "prompt_structure":"Build or transform a rectangular array representing a multiplication and connect rows, columns and total quantity.",
+      "evidence":["array_dimensions","total","strategy"]
+    },
+    {
+      "id":"NUM_FRAC_01",
+      "skill":"simple_fraction_representation",
+      "sense":"NUM",
+      "block":"COR",
+      "cognitive":"basic",
+      "gameplay":"select_parts",
+      "prompt_structure":"Construct or identify a simple fraction using equal parts.",
+      "constraints":{"denominators":[2,3,4,6,8]},
+      "evidence":["selected_parts","whole_partition_understanding"]
+    },
+    {
+      "id":"NUM_FRAC_02",
+      "skill":"fraction_representation_connection",
+      "sense":"NUM",
+      "block":"CON",
+      "cognitive":"intermediate",
+      "gameplay":"match_representations",
+      "prompt_structure":"Match two different visual or symbolic representations of the same simple fraction.",
+      "constraints":{"denominators":[2,3,4,6,8]},
+      "evidence":["matches","distractor_pattern"]
+    },
+    {
+      "id":"MES_TIME_01",
+      "skill":"time_interval",
+      "sense":"MES",
+      "block":"REP",
+      "cognitive":"intermediate",
+      "gameplay":"timeline",
+      "prompt_structure":"Manipulate a clock/timeline to satisfy an arrival, departure or duration constraint.",
+      "evidence":["timeline_moves","final_time","strategy"]
+    },
+    {
+      "id":"MES_CAL_01",
+      "skill":"calendar_duration",
+      "sense":"MES",
+      "block":"REP",
+      "cognitive":"intermediate",
+      "gameplay":"calendar_select",
+      "prompt_structure":"Use a calendar to determine or construct a date interval spanning one or more days.",
+      "evidence":["selected_dates","counting_strategy"]
+    },
+    {
+      "id":"MES_EQ_01",
+      "skill":"measurement_equivalence",
+      "sense":"MES",
+      "block":"RAP",
+      "cognitive":"intermediate",
+      "gameplay":"fit_measure",
+      "prompt_structure":"Compare or transform common measures expressed with different units in a practical scene.",
+      "constraints":{"units":["km","m","cm","mm","kg","g","l","ml"]},
+      "evidence":["conversion","comparison","tool_choice"]
+    },
+    {
+      "id":"ESP_SYM_01",
+      "skill":"symmetry",
+      "sense":"ESP",
+      "block":"RAP",
+      "cognitive":"intermediate",
+      "gameplay":"complete_mirror",
+      "prompt_structure":"Complete or repair a figure using an axis of symmetry.",
+      "evidence":["placed_cells_or_shapes","symmetry_errors"]
+    },
+    {
+      "id":"ESP_PERI_01",
+      "skill":"perimeter",
+      "sense":"ESP",
+      "block":"REP",
+      "cognitive":"intermediate",
+      "gameplay":"build_boundary",
+      "prompt_structure":"Construct or measure the boundary of a practical 2D shape under a perimeter constraint.",
+      "evidence":["shape","boundary_length","strategy"]
+    },
+    {
+      "id":"ESP_PERI_02",
+      "skill":"same_perimeter_multiple_shapes",
+      "sense":"ESP",
+      "block":"RAP",
+      "cognitive":"superior",
+      "gameplay":"create_two_shapes",
+      "prompt_structure":"Create two different valid shapes with the same required perimeter.",
+      "evidence":["solution_count","shape_difference","perimeter_validity"]
+    },
+    {
+      "id":"EST_GRAPH_01",
+      "skill":"table_graph_conversion",
+      "sense":"EST",
+      "block":"COR",
+      "cognitive":"intermediate",
+      "gameplay":"build_chart",
+      "prompt_structure":"Transform a small data table into a bar/pictogram representation or reconstruct the table from a graph.",
+      "evidence":["bars_or_counts","scale_errors","labels"]
+    },
+    {
+      "id":"EST_ERR_01",
+      "skill":"data_error_detection",
+      "sense":"EST",
+      "block":"RAP",
+      "cognitive":"superior",
+      "gameplay":"spot_and_fix",
+      "prompt_structure":"Present a chart/table containing one inconsistency and require the player to identify and repair it.",
+      "evidence":["error_selected","repair"]
+    },
+    {
+      "id":"EST_PROB_01",
+      "skill":"qualitative_probability",
+      "sense":"EST",
+      "block":"RAP",
+      "cognitive":"intermediate",
+      "gameplay":"choose_then_simulate",
+      "prompt_structure":"Compare visible compositions and predict which outcome is more/less/equally probable, then simulate.",
+      "evidence":["prediction","simulation_result","revision"]
+    },
+    {
+      "id":"ALG_PAT_01",
+      "skill":"patterns",
+      "sense":"ALG",
+      "block":"RAP",
+      "cognitive":"intermediate",
+      "gameplay":"extend_pattern",
+      "prompt_structure":"Identify a repeating or numeric pattern and extend it.",
+      "evidence":["next_elements","rule_inference"]
+    },
+    {
+      "id":"ALG_PAT_02",
+      "skill":"pattern_rule",
+      "sense":"ALG",
+      "block":"COR",
+      "cognitive":"superior",
+      "gameplay":"build_pattern_rule",
+      "prompt_structure":"Construct a pattern that satisfies a given rule or predict a distant element using the rule.",
+      "evidence":["constructed_pattern","rule_consistency"]
+    },
+    {
+      "id":"ALG_EQ_01",
+      "skill":"equality_equivalence",
+      "sense":"ALG",
+      "block":"RAP",
+      "cognitive":"intermediate",
+      "gameplay":"balance",
+      "prompt_structure":"Manipulate quantities or expressions so both sides of a balance represent equivalent amounts.",
+      "evidence":["moves","final_equivalence","misconception_equal_sign"]
+    }
+  ]
+}
