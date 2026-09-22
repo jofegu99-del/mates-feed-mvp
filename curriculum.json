@@ -1,0 +1,115 @@
+{
+  "product": "Nexo",
+  "version": "0.1",
+  "scope": {
+    "country": "España",
+    "autonomous_community": "Cataluña",
+    "stage": "Educación Primaria",
+    "grade": "4.º",
+    "subject": "Matemáticas",
+    "note": "Mapa MVP derivado de la normativa estatal y de las orientaciones curriculares oficiales de Cataluña para el segundo ciclo (3.º-4.º). La granularización en microhabilidades es propia del producto y debe validarse pedagógicamente antes de producción."
+  },
+  "domains": [
+    {
+      "id": "NUM",
+      "name": "Sentido numérico",
+      "skills": [
+        {"id":"NUM-01","name":"Leer y escribir números naturales hasta 9.999","essential":false,"prerequisites":[]},
+        {"id":"NUM-02","name":"Interpretar unidades, decenas, centenas y millares","essential":false,"prerequisites":["NUM-01"]},
+        {"id":"NUM-03","name":"Representar números hasta 9.999 en la recta numérica","essential":true,"prerequisites":["NUM-01"]},
+        {"id":"NUM-04","name":"Componer, descomponer y recomponer números hasta 9.999","essential":true,"prerequisites":["NUM-02"]},
+        {"id":"NUM-05","name":"Comparar y ordenar números naturales hasta 9.999","essential":true,"prerequisites":["NUM-01","NUM-02"]},
+        {"id":"NUM-06","name":"Estimar cantidades de forma razonada","essential":false,"prerequisites":["NUM-02"]},
+        {"id":"NUM-07","name":"Aproximar y redondear números","essential":false,"prerequisites":["NUM-02"]},
+        {"id":"NUM-08","name":"Reconocer fracciones sencillas: medios, cuartos, octavos, tercios y sextos","essential":false,"prerequisites":[]},
+        {"id":"NUM-09","name":"Relacionar distintas representaciones de una fracción sencilla","essential":false,"prerequisites":["NUM-08"]},
+        {"id":"NUM-10","name":"Usar fracciones sencillas en situaciones cotidianas","essential":false,"prerequisites":["NUM-08","NUM-09"]}
+      ]
+    },
+    {
+      "id": "OPS",
+      "name": "Sentido de las operaciones",
+      "skills": [
+        {"id":"OPS-01","name":"Aplicar estrategias flexibles de cálculo mental","essential":true,"prerequisites":["NUM-04"]},
+        {"id":"OPS-02","name":"Sumar y restar números naturales hasta 9.999","essential":false,"prerequisites":["NUM-04"]},
+        {"id":"OPS-03","name":"Representar y resolver multiplicaciones","essential":false,"prerequisites":[]},
+        {"id":"OPS-04","name":"Representar y resolver divisiones como reparto o partición","essential":false,"prerequisites":["OPS-03"]},
+        {"id":"OPS-05","name":"Construir y comprender las tablas de multiplicar mediante patrones","essential":true,"prerequisites":["OPS-03"]},
+        {"id":"OPS-06","name":"Automatizar resultados frecuentes de las tablas de multiplicar","essential":false,"prerequisites":["OPS-05"]},
+        {"id":"OPS-07","name":"Elegir entre suma, resta, multiplicación o división según el problema","essential":false,"prerequisites":["OPS-02","OPS-03","OPS-04"]},
+        {"id":"OPS-08","name":"Usar relaciones entre operaciones para agilizar el cálculo","essential":true,"prerequisites":["OPS-02","OPS-03","OPS-04"]},
+        {"id":"OPS-09","name":"Estimar resultados de sumas, restas, multiplicaciones y divisiones","essential":false,"prerequisites":["OPS-07"]}
+      ]
+    },
+    {
+      "id": "ALG",
+      "name": "Sentido algebraico",
+      "skills": [
+        {"id":"ALG-01","name":"Identificar y extender patrones de repetición","essential":false,"prerequisites":[]},
+        {"id":"ALG-02","name":"Crear series a partir de una regla dada","essential":true,"prerequisites":["ALG-01"]},
+        {"id":"ALG-03","name":"Predecir elementos cercanos y lejanos de una serie","essential":false,"prerequisites":["ALG-01"]},
+        {"id":"ALG-04","name":"Usar diagramas y esquemas para representar problemas","essential":true,"prerequisites":[]},
+        {"id":"ALG-05","name":"Interpretar correctamente igualdad y desigualdad","essential":false,"prerequisites":["NUM-05"]}
+      ]
+    },
+    {
+      "id": "MES",
+      "name": "Sentido de la medida",
+      "skills": [
+        {"id":"MES-01","name":"Reconocer longitud, masa, capacidad, superficie, volumen y ángulo como magnitudes","essential":true,"prerequisites":[]},
+        {"id":"MES-02","name":"Usar km, m, cm y mm en contextos cotidianos","essential":true,"prerequisites":["MES-01"]},
+        {"id":"MES-03","name":"Usar kg y g en contextos cotidianos","essential":true,"prerequisites":["MES-01"]},
+        {"id":"MES-04","name":"Usar l y ml en contextos cotidianos","essential":true,"prerequisites":["MES-01"]},
+        {"id":"MES-05","name":"Expresar una misma medida con unidades equivalentes","essential":false,"prerequisites":["MES-02","MES-03","MES-04"]},
+        {"id":"MES-06","name":"Resolver duraciones cortas usando el reloj","essential":false,"prerequisites":[]},
+        {"id":"MES-07","name":"Resolver duraciones superiores a un día usando el calendario","essential":false,"prerequisites":[]},
+        {"id":"MES-08","name":"Elegir y usar el instrumento adecuado para medir longitudes","essential":true,"prerequisites":["MES-02"]},
+        {"id":"MES-09","name":"Medir y comparar áreas usando cuadrículas o referentes","essential":false,"prerequisites":["MES-01"]}
+      ]
+    },
+    {
+      "id": "ESP",
+      "name": "Sentido espacial",
+      "skills": [
+        {"id":"ESP-01","name":"Reconocer relaciones geométricas como paralelismo, perpendicularidad y simetría","essential":false,"prerequisites":[]},
+        {"id":"ESP-02","name":"Generar figuras mediante simetrías, giros y traslaciones","essential":true,"prerequisites":["ESP-01"]},
+        {"id":"ESP-03","name":"Calcular perímetros de figuras planas en problemas cotidianos","essential":false,"prerequisites":["MES-02"]},
+        {"id":"ESP-04","name":"Ubicar posiciones y desplazamientos usando referencias o coordenadas","essential":true,"prerequisites":[]},
+        {"id":"ESP-05","name":"Interpretar vistas frontal, lateral y cenital de figuras","essential":false,"prerequisites":[]},
+        {"id":"ESP-06","name":"Razonar sobre caras y desarrollos de prismas y pirámides","essential":false,"prerequisites":[]}
+      ]
+    },
+    {
+      "id": "EST",
+      "name": "Sentido estocástico",
+      "skills": [
+        {"id":"EST-01","name":"Formular preguntas que puedan responderse recogiendo datos","essential":true,"prerequisites":[]},
+        {"id":"EST-02","name":"Organizar datos en tablas de recuento y doble entrada","essential":true,"prerequisites":["EST-01"]},
+        {"id":"EST-03","name":"Representar datos en pictogramas y gráficos de barras","essential":false,"prerequisites":["EST-02"]},
+        {"id":"EST-04","name":"Leer e interpretar gráficos y responder preguntas","essential":false,"prerequisites":["EST-03"]},
+        {"id":"EST-05","name":"Interpretar frecuencia absoluta","essential":true,"prerequisites":["EST-02"]},
+        {"id":"EST-06","name":"Reconocer situaciones imposibles, posibles y seguras","essential":false,"prerequisites":[]},
+        {"id":"EST-07","name":"Comparar eventos como más, menos o igual de probables","essential":true,"prerequisites":["EST-06"]},
+        {"id":"EST-08","name":"Hacer predicciones en experimentos aleatorios sencillos","essential":true,"prerequisites":["EST-06","EST-07"]}
+      ]
+    },
+    {
+      "id": "FIN",
+      "name": "Educación financiera",
+      "skills": [
+        {"id":"FIN-01","name":"Reconocer equivalencias entre euros y céntimos","essential":false,"prerequisites":[]},
+        {"id":"FIN-02","name":"Estimar precios y calcular cambio en compras cotidianas","essential":true,"prerequisites":["FIN-01","OPS-02"]},
+        {"id":"FIN-03","name":"Tomar decisiones sencillas de uso responsable del dinero","essential":false,"prerequisites":["FIN-02"]}
+      ]
+    },
+    {
+      "id": "SOC",
+      "name": "Sentido socioemocional",
+      "skills": [
+        {"id":"SOC-01","name":"Perseverar ante retos matemáticos","essential":false,"prerequisites":[]},
+        {"id":"SOC-02","name":"Interpretar el error como oportunidad de aprendizaje","essential":false,"prerequisites":[]},
+        {"id":"SOC-03","name":"Explicar y comparar estrategias de resolución","essential":false,"prerequisites":[]}
+      ]
+    }
+  ]
+}
