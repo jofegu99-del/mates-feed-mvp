@@ -141,6 +141,58 @@ button{font:inherit}
   .missionMini,.budget{font-size:12px;padding:8px 9px}
   .routeTip{font-size:12px;padding:10px}
 }
+
+/* SESSION CONTINUITY + COMPANION + BOSS */
+.dots{gap:5px}
+.dot{width:14px;height:14px;border-radius:5px;transform:rotate(45deg);border:2px solid #fff;box-shadow:0 2px 0 rgba(71,55,35,.1)}
+.dot.on{background:#ffe45e;animation:partPulse .75s ease-in-out infinite alternate}
+.dot.done{background:#5ed49d}
+.dot.bossDot{border-radius:50%;transform:none}
+@keyframes partPulse{to{transform:rotate(45deg) scale(1.18)}}
+.buddy{position:absolute;right:10px;bottom:74px;z-index:45;display:flex;align-items:flex-end;gap:6px;pointer-events:none;animation:buddyIn .25s ease-out}
+.buddy.hidden{display:none}
+@keyframes buddyIn{from{transform:translateY(12px) scale(.94);opacity:0}}
+.buddyFace{width:54px;height:54px;flex:0 0 54px;filter:drop-shadow(0 5px 3px rgba(0,0,0,.14))}
+.buddyFace svg{width:100%;height:100%}
+.buddyBubble{max-width:190px;background:#fff;border:3px solid #263238;border-radius:17px 17px 5px 17px;padding:8px 10px;font-size:12px;font-weight:1000;box-shadow:0 4px 0 rgba(38,50,56,.13)}
+.bonusOrb{position:absolute;inset:19%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 12%,#ffe35e 13% 45%,#ff9c50 46% 100%);box-shadow:0 0 0 4px #fff7b2,0 0 16px #ffe35e;z-index:4;animation:orbBob 1s ease-in-out infinite alternate}
+.bonusOrb:after{content:"+";position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:1000;color:#6d4a21}
+@keyframes orbBob{to{transform:translateY(-5px) rotate(7deg)}}
+.routeScene .grid{touch-action:none;user-select:none;-webkit-user-select:none}
+.routeScene .cell.dragActive{filter:brightness(1.14)}
+.partFlash{position:fixed;left:50%;top:45%;z-index:120;transform:translate(-50%,-50%);background:#263238;color:#fff;border:4px solid #fff;border-radius:22px;padding:14px 18px;font-weight:1000;font-size:18px;box-shadow:0 14px 35px rgba(0,0,0,.25);animation:partFlash .95s ease-out forwards;pointer-events:none}
+@keyframes partFlash{0%{transform:translate(-50%,-35%) scale(.6);opacity:0}22%{transform:translate(-50%,-50%) scale(1.08);opacity:1}75%{opacity:1}100%{transform:translate(-50%,-75%) scale(.95);opacity:0}}
+.bossScene{padding:0;background:#253548}
+.bossScene .sceneHeader{display:none}
+.bossScene .world{margin:0;border-radius:0;min-height:calc(100dvh - 86px);padding:14px;background:radial-gradient(circle at 50% 14%,#55758d 0,#30495d 34%,#1f3140 100%);color:#fff}
+.bossWrap{min-height:calc(100dvh - 120px);display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2}
+.shipArea{text-align:center;padding-top:8px}
+.shipSvg{width:min(64vw,260px);filter:drop-shadow(0 18px 14px rgba(0,0,0,.3));transition:.35s}
+.shipSvg.ready{animation:shipReady .7s ease-in-out infinite alternate}
+@keyframes shipReady{to{transform:translateY(-7px)}}
+.bossTitle{text-align:center;font-size:25px;font-weight:1000;letter-spacing:-.03em;margin:2px 0 5px}
+.bossSub{text-align:center;font-size:13px;font-weight:800;color:#d8e9f5;margin:0 auto 10px;max-width:320px}
+.modulePanel{background:#f8fbff;color:#263238;border:4px solid #d8edff;border-radius:26px;padding:15px;box-shadow:0 8px 0 rgba(12,33,50,.2)}
+.moduleTabs{display:flex;justify-content:center;gap:8px;margin-bottom:12px}
+.moduleTab{width:14px;height:14px;border-radius:50%;background:#d0dbe3}.moduleTab.done{background:#5ed49d}.moduleTab.on{background:#ffe05c;box-shadow:0 0 0 4px #fff1a8}
+.moduleQuestion{font-size:16px;font-weight:1000;text-align:center;margin-bottom:12px}
+.battery{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;background:#263238;border-radius:18px;padding:9px;max-width:290px;margin:auto}
+.batteryCell{aspect-ratio:.78;border:0;border-radius:11px;background:#677784;box-shadow:inset 0 -6px 0 #4e5c66;transition:.15s}
+.batteryCell.on{background:#66e0a3;box-shadow:inset 0 -6px 0 #31a76d,0 0 15px rgba(102,224,163,.5);transform:translateY(-3px)}
+.tankRow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tank{border:3px solid #263238;background:#dcecf4;border-radius:17px;padding:8px;text-align:center}
+.tankCount{font-size:27px;font-weight:1000}.tankBtns{display:flex;gap:5px;margin-top:6px}.tankBtns button{flex:1;border:0;border-radius:9px;background:#fff;padding:7px;font-weight:1000}
+.bossClock{text-align:center;font-size:44px;font-weight:1000;letter-spacing:-.05em;margin:5px}
+.bossClockBtns{display:flex;gap:8px}.bossClockBtns button{flex:1;border:0;background:#e7f2fa;padding:11px;border-radius:13px;font-weight:1000}
+.moduleCheck{width:100%;border:0;background:#6f5cff;color:#fff;border-radius:16px;padding:13px;margin-top:12px;font-weight:1000;box-shadow:0 5px 0 #5545c9}
+.launchGlow{position:absolute;left:50%;bottom:-110px;width:180px;height:220px;transform:translateX(-50%);background:radial-gradient(ellipse,#fff 0,#8edcff 28%,rgba(142,220,255,0) 70%);opacity:0;pointer-events:none}
+.launchGlow.go{animation:launchGlow 1.2s ease-out forwards}
+@keyframes launchGlow{20%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(110px) scale(1.8)}}
+@media(max-width:390px){
+ .buddy{bottom:64px}.buddyBubble{max-width:155px;font-size:11px}.buddyFace{width:48px;height:48px;flex-basis:48px}
+ .bossScene .world{min-height:calc(100dvh - 78px)}
+ .modulePanel{padding:12px}
+}
 </style>
 </head>
 <body>
@@ -187,12 +239,16 @@ button{font:inherit}
     </div>
     <div class="world" id="world"></div>
     <div class="nextToast" id="toast"></div>
+    <div id="buddy" class="buddy hidden">
+      <div class="buddyFace"><svg viewBox="0 0 90 90" aria-hidden="true"><path d="M23 36C24 17 36 10 45 10s22 7 23 26l-4 31c-3 10-10 15-19 15S29 77 26 67Z" fill="#ff8e62" stroke="#263238" stroke-width="4"/><path d="M28 37 20 21l17 9M62 37l9-16-18 9" fill="#ff8e62" stroke="#263238" stroke-width="4" stroke-linejoin="round"/><path d="M27 43c8-9 28-9 36 0l-3 19c-8 8-22 8-30 0Z" fill="#fff7e8"/><circle cx="37" cy="49" r="3.7" fill="#263238"/><circle cx="54" cy="49" r="3.7" fill="#263238"/><path d="M41 59q4 4 8 0" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/></svg></div>
+      <div class="buddyBubble" id="buddyText"></div>
+    </div>
   </section>
 
   <section id="reward" class="screen reward hidden">
-    <div class="big">🦊✨</div>
-    <h2>¡Aventura completada!</h2>
-    <p>No hay más por hoy. Mañana Nexo preparará otra mezcla de retos.</p>
+    <div class="big" style="font-size:86px">🚀</div>
+    <h2>¡Nave reparada!</h2>
+    <p>Has recuperado las 5 piezas y completado la misión final. Por hoy, se acabó.</p>
     <div class="scoreGrid">
       <div class="score"><b id="rStars">0</b><small>estrellas</small></div>
       <div class="score"><b id="rTries">0</b><small>intentos totales</small></div>
@@ -215,8 +271,8 @@ const $=id=>document.getElementById(id);
 const saved=JSON.parse(localStorage.getItem("nexo-kid-v2")||"{}");
 let mastery=saved.mastery||{route:50,division:50,multiplication:50,fraction:50,time:50};
 let stars=saved.stars||0,sessions=saved.sessions||0;
-let idx=0,tries=0,sessionStars=0;
-const games=["route","division","array","fraction","time"];
+let idx=0,tries=0,sessionStars=0,parts=0,bonusFound=false,buddyTimer=null;
+const games=["route","division","array","fraction","time","boss"];
 const labels={route:"Orientación y recorridos",division:"División y reparto",multiplication:"Estructura multiplicativa",fraction:"Fracciones sencillas",time:"Tiempo y duración"};
 let audioCtx=null;
 function tone(freq=440,dur=.08,type="sine"){
@@ -230,20 +286,53 @@ function tone(freq=440,dur=.08,type="sine"){
 }
 function buzz(ms=20){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
 function save(){localStorage.setItem("nexo-kid-v2",JSON.stringify({mastery,stars,sessions}))}
-function show(id){["home","scene","reward","parents"].forEach(x=>$(x).classList.add("hidden"));$(id).classList.remove("hidden")}
-function dots(){ $("dots").innerHTML=""; for(let i=0;i<5;i++){let d=document.createElement("i");d.className="dot "+(i<idx?"done":i===idx?"on":"");$("dots").appendChild(d)}}
+function show(id){["home","scene","reward","parents"].forEach(x=>$(x).classList.add("hidden"));if($("buddy"))$("buddy").classList.add("hidden");$(id).classList.remove("hidden")}
+function buddySay(text,ms=1700){
+ clearTimeout(buddyTimer);if(!$("buddy"))return;
+ $("buddyText").textContent=text;$("buddy").classList.remove("hidden");
+ buddyTimer=setTimeout(()=>$("buddy").classList.add("hidden"),ms);
+}
+function partFlash(){
+ const d=document.createElement("div");d.className="partFlash";d.textContent="◆ PIEZA "+parts+"/5";
+ document.body.appendChild(d);setTimeout(()=>d.remove(),1000);
+}
+function earnPart(){
+ if(parts<5){parts++;partFlash();tone(820,.08);setTimeout(()=>tone(1040,.11),85)}
+}
+function dots(){
+ $("dots").innerHTML="";
+ for(let i=0;i<6;i++){
+   let d=document.createElement("i");
+   d.className="dot "+(i===5?"bossDot ":"")+(i<idx?"done":i===idx?"on":"");
+   $("dots").appendChild(d);
+ }
+}
 function toast(msg,ok=true,cb){let t=$("toast");t.textContent=msg;t.style.background=ok?"#24323b":"#8d3945";t.classList.add("show");setTimeout(()=>{t.classList.remove("show");if(cb)cb()},850)}
-function success(skill,msg){sessionStars++;stars++;mastery[skill]=Math.min(100,mastery[skill]+6);$("stars").textContent=stars;toast(msg,true,()=>{idx++;if(idx>=games.length)finish();else load()})}
-function miss(skill,msg){tries++;mastery[skill]=Math.max(10,mastery[skill]-1);toast(msg,false)}
-function load(){show("scene");$("scene").className="screen scene";dots();$("world").className="world";$("world").innerHTML="";let g=games[idx];if(g==="route")route();if(g==="division")division();if(g==="array")arrayGame();if(g==="fraction")fraction();if(g==="time")timeGame()}
-function start(){idx=0;tries=0;sessionStars=0;load()}
+function success(skill,msg){
+ sessionStars++;stars++;mastery[skill]=Math.min(100,mastery[skill]+6);$("stars").textContent=stars;
+ earnPart();buddySay(["¡Eso ha sido bueno!","¡Una pieza más!","¡Vamos, vamos!","¡La nave está casi!"][Math.min(parts-1,3)]);
+ toast(msg,true,()=>{idx++;if(idx>=games.length)finish();else load()})
+}
+function miss(skill,msg){tries++;mastery[skill]=Math.max(10,mastery[skill]-1);buddySay(["Mmm… míralo otra vez.","Casi. Prueba de otra forma.","Yo también me he liado. Otra."][tries%3]);toast(msg,false)}
+function load(){
+ show("scene");$("scene").className="screen scene";dots();$("world").className="world";$("world").innerHTML="";
+ let g=games[idx];
+ if(g==="route")route();
+ if(g==="division")division();
+ if(g==="array")arrayGame();
+ if(g==="fraction")fraction();
+ if(g==="time")timeGame();
+ if(g==="boss")boss();
+}
+function start(){idx=0;tries=0;sessionStars=0;parts=0;bonusFound=false;load()}
 function route(){
  $("scene").classList.add("routeScene");
  let w=$("world");w.classList.add("mapWorld");
  const walls=[2,7,12,17,18];
  const goal=24,start=0,budget=100;
  const costs={0:0,1:20,3:30,4:20,5:10,6:20,8:20,9:20,10:10,11:20,13:30,14:20,15:10,16:20,19:20,20:10,21:10,22:20,23:10,24:20};
- let current=start,used=0,visited=[start],hintTimer=null,finished=false,failedRuns=0;
+ let current=start,used=0,visited=[start],hintTimer=null,finished=false,failedRuns=0,dragging=false,lastDrag=null;
+ const bonusCell=11;
 
  const pawnSvg='<svg viewBox="0 0 90 90" aria-hidden="true"><path d="M23 36C24 17 36 10 45 10s22 7 23 26l-4 31c-3 10-10 15-19 15S29 77 26 67Z" fill="#ff8e62" stroke="#263238" stroke-width="4"/><path d="M28 37 20 21l17 9M62 37l9-16-18 9" fill="#ff8e62" stroke="#263238" stroke-width="4" stroke-linejoin="round"/><path d="M27 43c8-9 28-9 36 0l-3 19c-8 8-22 8-30 0Z" fill="#fff7e8"/><circle cx="37" cy="49" r="3.7" fill="#263238"/><circle cx="54" cy="49" r="3.7" fill="#263238"/><path d="M41 59q4 4 8 0" fill="none" stroke="#263238" stroke-width="3" stroke-linecap="round"/></svg>';
  const crystalSvg='<svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 4 64 28 54 66 40 77 25 66 16 28Z" fill="#ffe35d" stroke="#263238" stroke-width="4" stroke-linejoin="round"/><path d="M40 4 41 77M16 28h48M25 66l16-38 13 38" fill="none" stroke="#fff6b2" stroke-width="3" opacity=".8"/></svg>';
@@ -304,8 +393,10 @@ function route(){
        if(reachable.includes(i))b.classList.add("reachable");
        if(visited.includes(i)&&i!==current)b.innerHTML+='<i class="trailDot"></i>';
        if(i!==start&&i!==goal)b.innerHTML+='<span class="distChip">'+(costs[i]||10)+' m</span>';
+       if(i===bonusCell&&!bonusFound)b.innerHTML+='<span class="bonusOrb"></span>';
        if(i===goal)b.innerHTML+='<span class="crystal">'+crystalSvg+'</span>';
        if(i===current)b.innerHTML+='<span class="pawn">'+pawnSvg+'</span>';
+       b.dataset.index=i;
        b.onclick=()=>move(i,b);
      }
      g.appendChild(b);
@@ -326,10 +417,14 @@ function route(){
      tone(170,.07,"square");buzz(15);setTip("Nexo solo puede saltar a una casilla de al lado.","bad");scheduleHint();return;
    }
    current=i;used+=(costs[i]||10);visited.push(i);tries++;
+   if(i===bonusCell&&!bonusFound){
+     bonusFound=true;stars++;sessionStars++;$("stars").textContent=stars;
+     tone(960,.1);setTimeout(()=>tone(1220,.12),90);buddySay("¡Eh! ¡Encontraste energía extra!",2100);
+   }
    tone(420+Math.min(used,100)*2,.055);draw();
    if(i===goal){
      if(used<=budget){
-       finished=true;clearTimeout(hintTimer);sessionStars++;stars++;mastery.route=Math.min(100,mastery.route+7);$("stars").textContent=stars;
+       finished=true;clearTimeout(hintTimer);sessionStars++;stars++;mastery.route=Math.min(100,mastery.route+7);$("stars").textContent=stars;earnPart();buddySay("¡La primera pieza! Sabía que podías.");
        const cell=$("grid").children[goal];sparkle(cell);tone(740,.12);setTimeout(()=>tone(980,.16),110);buzz(35);
        setTip("¡PIEZA RECUPERADA! Has llegado usando "+used+" m.","good");
        setTimeout(()=>{idx++;load()},1500);
@@ -343,46 +438,116 @@ function route(){
      setTip(left>=0?"Te quedan "+left+" m. Piensa antes del siguiente salto.":"Te has pasado de 100 m. Aún puedes llegar y volver a intentarlo.",left>=0?"":"bad");
    }
  }
+ const gridEl=$("grid");
+ gridEl.addEventListener("pointerdown",e=>{
+   dragging=true;lastDrag=null;
+   const cell=e.target.closest(".cell");
+   if(cell&&!cell.classList.contains("wall")){lastDrag=Number(cell.dataset.index);move(lastDrag,cell)}
+ });
+ document.addEventListener("pointermove",e=>{
+   if(!dragging||finished)return;
+   const cell=document.elementFromPoint(e.clientX,e.clientY)?.closest(".cell");
+   if(!cell||!gridEl.contains(cell)||cell.classList.contains("wall"))return;
+   const n=Number(cell.dataset.index);
+   if(n!==lastDrag){lastDrag=n;move(n,cell)}
+ },{passive:true});
+ document.addEventListener("pointerup",()=>{dragging=false;lastDrag=null},{once:false});
  draw();
 }
 function division(){
  $("badge").textContent="REPARA";$("title").textContent="Este reparto está mal";$("sub").textContent="Hay 12 manzanas. Los tres niños deben tener exactamente las mismas.";
  let w=$("world");w.classList.add("repairWorld");
- let counts=[5,4,3],selected=null;
+ const hard=mastery.division>=65;
+ let counts=hard?[7,5,3]:[5,4,3],selected=null,target=hard?5:4,total=hard?15:12;
+ $("title").textContent="Este reparto está mal";
+ $("sub").textContent="Hay "+total+" manzanas. Los tres niños deben tener exactamente las mismas.";
  w.innerHTML='<div class="baskets" id="baskets"></div><div class="repairHint" id="repairHint">Toca una cesta para coger una manzana y después otra para dejarla.</div>';
  function draw(){let box=$("baskets");box.innerHTML="";["👧","🧒","👦"].forEach((kid,i)=>{let b=document.createElement("button");b.className="basket"+(selected===i?" sel":"");b.innerHTML='<div class="kid">'+kid+'</div><div class="apples">'+"🍎".repeat(counts[i])+'</div><b>'+counts[i]+' manzanas</b>';b.onclick=()=>tap(i);box.appendChild(b)})}
- function tap(i){if(selected===null){if(counts[i]===0)return;selected=i;$("repairHint").textContent="Ahora toca dónde quieres dejarla.";draw()}else if(selected===i){selected=null;$("repairHint").textContent="Movimiento cancelado.";draw()}else{counts[selected]--;counts[i]++;selected=null;tries++;draw();$("repairHint").textContent="¿Ya es justo para los tres?";if(counts.every(x=>x===4))success("division","¡Arreglado! 12 repartidas entre 3 = 4 para cada uno.")}}
+ function tap(i){if(selected===null){if(counts[i]===0)return;selected=i;$("repairHint").textContent="Ahora toca dónde quieres dejarla.";draw()}else if(selected===i){selected=null;$("repairHint").textContent="Movimiento cancelado.";draw()}else{counts[selected]--;counts[i]++;selected=null;tries++;draw();$("repairHint").textContent="¿Ya es justo para los tres?";if(counts.every(x=>x===target))success("division","¡Arreglado! "+total+" repartidas entre 3 = "+target+" para cada uno.")}}
  draw();
 }
 function arrayGame(){
  $("badge").textContent="DRONES";$("title").textContent="Forma exactamente 24 drones";$("sub").textContent="Elige filas y columnas. Busca una formación rectangular que tenga 24 en total.";
  let w=$("world");w.classList.add("arrayWorld");
+ const target=mastery.multiplication>=65?36:24;
+ $("title").textContent="Forma exactamente "+target+" drones";
  let rows=4,cols=4;
  w.innerHTML='<div class="arrayControls"><div class="control"><small>FILAS</small><div class="stepper"><button id="rm">−</button><strong id="rv">4</strong><button id="rp">+</button></div></div><div class="control"><small>COLUMNAS</small><div class="stepper"><button id="cm">−</button><strong id="cv">4</strong><button id="cp">+</button></div></div></div><div class="droneGrid" id="droneGrid"></div><button class="checkBtn" id="checkArray">¿SON 24? 🚁</button>';
  function draw(){ $("rv").textContent=rows;$("cv").textContent=cols;let g=$("droneGrid");g.style.gridTemplateColumns='repeat('+cols+',minmax(0,1fr))';g.innerHTML="";for(let i=0;i<rows*cols;i++){let d=document.createElement("div");d.className="drone";d.textContent="🚁";g.appendChild(d)}}
  $("rm").onclick=()=>{rows=Math.max(2,rows-1);draw()};$("rp").onclick=()=>{rows=Math.min(8,rows+1);draw()};$("cm").onclick=()=>{cols=Math.max(2,cols-1);draw()};$("cp").onclick=()=>{cols=Math.min(8,cols+1);draw()};
- $("checkArray").onclick=()=>{tries++;if(rows*cols===24)success("multiplication","¡Exacto! "+rows+" × "+cols+" = 24.");else miss("multiplication","Ahora hay "+(rows*cols)+" drones. Necesitas exactamente 24.")};
+ $("checkArray").onclick=()=>{tries++;if(rows*cols===target)success("multiplication","¡Exacto! "+rows+" × "+cols+" = "+target+".");else miss("multiplication","Ahora hay "+(rows*cols)+" drones. Necesitas exactamente "+target+".")};
  draw();
 }
 function fraction(){
- $("badge").textContent="FRACCIÓN";$("title").textContent="Colorea 3/4 de la tableta";$("sub").textContent="La tableta tiene 8 partes iguales. ¿Cuántas deben quedar marcadas?";
+ const hard=mastery.fraction>=65,den=hard?6:4,num=hard?5:3,total=hard?12:8,needed=total*num/den;
+ $("badge").textContent="FRACCIÓN";$("title").textContent="Enciende "+num+"/"+den+" de la tableta";$("sub").textContent="Todas las partes son iguales. Toca las que necesites.";
  let w=$("world");w.classList.add("fracWorld");
  let on=new Set();
- w.innerHTML='<div class="choc" id="choc"></div><div class="fracCounter"><span id="fracCount">0</span> de 8 partes marcadas</div><button class="checkBtn" style="margin-top:15px" id="checkFrac">COMPROBAR 🍫</button>';
- for(let i=0;i<8;i++){let b=document.createElement("button");b.className="square";b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.classList.toggle("on");$("fracCount").textContent=on.size};$("choc").appendChild(b)}
- $("checkFrac").onclick=()=>{tries++;if(on.size===6)success("fraction","¡Eso es! 3/4 de 8 partes son 6.");else miss("fraction","Mira la tableta entera: 3 de cada 4 partes deben estar marcadas.")};
+ w.innerHTML='<div class="choc" id="choc" style="grid-template-columns:repeat('+(hard?6:4)+',minmax(0,1fr));width:min(100%,'+(hard?360:280)+'px)"></div><div class="fracCounter"><span id="fracCount">0</span> de '+total+' partes encendidas</div><button class="checkBtn" style="margin-top:15px" id="checkFrac">ACTIVAR</button>';
+ for(let i=0;i<total;i++){
+   let b=document.createElement("button");b.className="square";
+   b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.classList.toggle("on");$("fracCount").textContent=on.size;tone(on.has(i)?560:260,.045)};
+   $("choc").appendChild(b)
+ }
+ $("checkFrac").onclick=()=>{
+   tries++;
+   if(on.size===needed)success("fraction","¡Sí! "+num+"/"+den+" de "+total+" son "+needed+" partes.");
+   else miss("fraction","Ahora tienes "+on.size+" partes. Mira cuántas forman "+num+"/"+den+" del total.")
+ };
 }
 function timeGame(){
- $("badge").textContent="CONTRARRELOJ";$("title").textContent="Hay que llegar 30 min antes";$("sub").textContent="El autocar sale a las 17:20. Ajusta el reloj a la hora a la que debes estar allí.";
+ const hard=mastery.time>=65;
+ const depart=hard?(18*60+10):(17*60+20),before=hard?45:30,target=depart-before;
+ const fmt=m=>String(Math.floor(m/60)%24).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+ $("badge").textContent="CONTRARRELOJ";$("title").textContent="Llega "+before+" min antes";$("sub").textContent="El autocar sale a las "+fmt(depart)+". Ajusta el reloj a la hora a la que debes estar allí.";
  let w=$("world");w.classList.add("timeWorld");
- let mins=17*60+20;
- w.innerHTML='<div class="station">🚌</div><div class="timeline"></div><div class="clockBox"><small>HORA DE LLEGADA</small><div class="clock" id="clock">17:20</div><div class="timeBtns"><button id="minus">− 5 min</button><button id="plus">+ 5 min</button></div></div><button class="checkBtn" id="checkTime">LLEGAR A ESTA HORA</button>';
- function draw(){let h=Math.floor(mins/60)%24,m=mins%60;$("clock").textContent=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")}
- $("minus").onclick=()=>{mins-=5;draw()};$("plus").onclick=()=>{mins+=5;draw()};
- $("checkTime").onclick=()=>{tries++;if(mins===16*60+50)success("time","¡A tiempo! 17:20 menos 30 min = 16:50.");else miss("time","Todavía no. Cuenta 30 minutos hacia atrás desde las 17:20.")};
+ let mins=depart;
+ w.innerHTML='<div class="station">🚌</div><div class="timeline"></div><div class="clockBox"><small>HORA DE LLEGADA</small><div class="clock" id="clock">'+fmt(mins)+'</div><div class="timeBtns"><button id="minus">− 5 min</button><button id="plus">+ 5 min</button></div></div><button class="checkBtn" id="checkTime">LLEGAR A ESTA HORA</button>';
+ function draw(){$("clock").textContent=fmt(mins)}
+ $("minus").onclick=()=>{mins-=5;tone(330,.035);draw()};$("plus").onclick=()=>{mins+=5;tone(390,.035);draw()};
+ $("checkTime").onclick=()=>{tries++;if(mins===target)success("time","¡A tiempo! "+fmt(depart)+" menos "+before+" min = "+fmt(target)+".");else miss("time","Prueba a contar "+before+" minutos hacia atrás desde las "+fmt(depart)+".")};
  draw();
 }
-function finish(){sessions++;save();$("rStars").textContent=sessionStars;$("rTries").textContent=tries;show("reward");idx=5;dots()}
+function boss(){
+ $("scene").classList.add("bossScene");dots();
+ const w=$("world");w.classList.add("bossWorld");
+ let phase=0,battery=new Set(),tanks=[0,0,0],clock=16*60+35;
+ const shipSvg='<svg class="shipSvg" id="shipSvg" viewBox="0 0 260 200" aria-hidden="true"><ellipse cx="130" cy="176" rx="83" ry="15" fill="rgba(0,0,0,.18)"/><path d="M130 15C82 43 69 91 78 143l52 32 52-32c9-52-4-100-52-128Z" fill="#f7fbff" stroke="#172834" stroke-width="7"/><path d="M130 15v160" stroke="#d8e9f3" stroke-width="5"/><circle cx="130" cy="83" r="30" fill="#79d4ff" stroke="#172834" stroke-width="7"/><circle cx="130" cy="83" r="18" fill="#bff0ff"/><path d="M78 119 46 155l35-5M182 119l32 36-35-5" fill="#ff8e62" stroke="#172834" stroke-width="7" stroke-linejoin="round"/><path d="M105 171l-12 20h28l9-16 9 16h28l-12-20" fill="#ffe05c" stroke="#172834" stroke-width="6" stroke-linejoin="round"/></svg>';
+ w.innerHTML='<div class="bossWrap"><div class="shipArea">'+shipSvg+'<div class="bossTitle">¡Repara la nave!</div><p class="bossSub">Tres módulos. Usa lo que has practicado hoy.</p></div><div class="modulePanel"><div class="moduleTabs" id="moduleTabs"></div><div id="moduleBody"></div></div><div class="launchGlow" id="launchGlow"></div></div>';
+
+ function tabs(){
+   const t=$("moduleTabs");t.innerHTML="";
+   for(let i=0;i<3;i++){const d=document.createElement("i");d.className="moduleTab "+(i<phase?"done":i===phase?"on":"");t.appendChild(d)}
+ }
+ function advance(){
+   tone(760,.07);setTimeout(()=>tone(970,.1),70);buzz(22);phase++;tabs();
+   if(phase>=3){
+     $("shipSvg").classList.add("ready");$("launchGlow").classList.add("go");sessionStars+=2;stars+=2;$("stars").textContent=stars;
+     buddySay("¡LA NAVE FUNCIONA!",2200);
+     setTimeout(()=>finish(),1500);
+   }else render();
+ }
+ function render(){
+   tabs();const b=$("moduleBody");b.innerHTML="";
+   if(phase===0){
+     b.innerHTML='<div class="moduleQuestion">Batería: carga exactamente 3/4.</div><div class="battery" id="bossBattery"></div><button class="moduleCheck" id="bossCheck">CARGAR</button>';
+     for(let i=0;i<4;i++){let c=document.createElement("button");c.className="batteryCell";c.onclick=()=>{battery.has(i)?battery.delete(i):battery.add(i);c.classList.toggle("on");tone(520+battery.size*50,.04)};$("bossBattery").appendChild(c)}
+     $("bossCheck").onclick=()=>{tries++;if(battery.size===3)advance();else{buddySay("Son 4 partes iguales. Necesitamos 3.");tone(150,.08,"square")}}
+   }else if(phase===1){
+     b.innerHTML='<div class="moduleQuestion">Reparte 12 unidades de combustible por igual.</div><div class="tankRow" id="tankRow"></div><button class="moduleCheck" id="bossCheck">COMPROBAR</button>';
+     tanks.forEach((v,i)=>{let d=document.createElement("div");d.className="tank";d.innerHTML='<div>DEPÓSITO '+(i+1)+'</div><div class="tankCount" id="tc'+i+'">'+v+'</div><div class="tankBtns"><button data-i="'+i+'" data-d="-1">−</button><button data-i="'+i+'" data-d="1">+</button></div>';$("tankRow").appendChild(d)});
+     Array.from(b.querySelectorAll(".tankBtns button")).forEach(btn=>btn.onclick=()=>{const i=Number(btn.dataset.i),d=Number(btn.dataset.d),sum=tanks.reduce((a,c)=>a+c,0);if(d>0&&sum>=12)return;tanks[i]=Math.max(0,tanks[i]+d);$("tc"+i).textContent=tanks[i];tone(360+tanks[i]*35,.035)});
+     $("bossCheck").onclick=()=>{tries++;if(tanks.every(x=>x===4))advance();else{buddySay("Los tres depósitos deben quedar iguales y sumar 12.");tone(150,.08,"square")}}
+   }else{
+     b.innerHTML='<div class="moduleQuestion">Lanzamiento: 20 min después de las 16:35.</div><div class="bossClock" id="bossClock">16:35</div><div class="bossClockBtns"><button id="bcM">− 5</button><button id="bcP">+ 5</button></div><button class="moduleCheck" id="bossCheck">PROGRAMAR</button>';
+     const draw=()=>{$("bossClock").textContent=String(Math.floor(clock/60)).padStart(2,"0")+":"+String(clock%60).padStart(2,"0")};
+     $("bcM").onclick=()=>{clock-=5;draw();tone(330,.035)};$("bcP").onclick=()=>{clock+=5;draw();tone(390,.035)};
+     $("bossCheck").onclick=()=>{tries++;if(clock===16*60+55)advance();else{buddySay("Cuenta 20 minutos hacia delante.");tone(150,.08,"square")}}
+   }
+ }
+ buddySay("Última misión. ¡Arreglamos la nave!",1900);render();
+}
+function finish(){sessions++;save();$("rStars").textContent=sessionStars;$("rTries").textContent=tries;show("reward");idx=6;dots()}
 function parents(){show("parents");$("skillList").innerHTML="";Object.keys(labels).forEach(k=>{let d=document.createElement("div");d.className="skill";d.innerHTML='<div class="skillTop"><span>'+labels[k]+'</span><span>'+Math.round(mastery[k])+'%</span></div><div class="bar"><div class="fill" style="width:'+mastery[k]+'%"></div></div>';$("skillList").appendChild(d)})}
 $("play").onclick=start;$("parentsBtn").onclick=parents;$("back").onclick=()=>show("home");$("homeAgain").onclick=()=>show("home");$("stars").textContent=stars;dots();
 })();
