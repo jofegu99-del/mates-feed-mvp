@@ -3,422 +3,188 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#12131a">
-<title>Nexo · Mates que se juegan</title>
+<meta name="theme-color" content="#fff7df">
+<title>Nexo · 4.º Primaria</title>
 <style>
 :root{
-  --bg:#0f1016;--panel:#171923;--panel2:#202332;--ink:#f8f8fb;--muted:#a6a9b8;
-  --purple:#7967ff;--purple2:#a78bfa;--green:#31d58b;--red:#ff5f71;--yellow:#ffd45b;--blue:#54b7ff;
-  --line:rgba(255,255,255,.09);--shadow:0 22px 60px rgba(0,0,0,.35)
+  --ink:#263238;--cream:#fff7df;--paper:#fffdf6;--blue:#67c7ff;--blue2:#2d9de0;
+  --green:#63d6a0;--yellow:#ffd85e;--orange:#ff9f68;--pink:#ff8fb3;--purple:#9b8cff;
+  --red:#ff6f7f;--line:#e8dcc1;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:radial-gradient(circle at 50% -10%,#27233d 0,#111219 42%,#0c0d12 100%);color:var(--ink);font-family:Inter,ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overscroll-behavior:none}
-button{font:inherit;color:inherit}
-.app{max-width:500px;margin:auto;min-height:100dvh;padding:calc(12px + env(safe-area-inset-top)) 16px calc(22px + env(safe-area-inset-bottom))}
+html,body{margin:0;background:var(--cream);color:var(--ink);font-family:ui-rounded,-apple-system,BlinkMacSystemFont,"SF Pro Rounded","Segoe UI",sans-serif;overflow-x:hidden}
+button{font:inherit}
+.app{max-width:520px;margin:auto;min-height:100dvh;padding:calc(10px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom))}
 .hidden{display:none!important}
-.topbar{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-weight:1000;font-size:25px;letter-spacing:-.06em}.logo em{font-style:normal;color:var(--purple2)}
-.hud{display:flex;gap:7px}.hudPill{display:flex;align-items:center;gap:5px;border:1px solid var(--line);background:rgba(255,255,255,.05);padding:8px 10px;border-radius:999px;font-size:12px;font-weight:900}
-.shell{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:30px;box-shadow:var(--shadow);overflow:hidden}
-.home{padding:22px;min-height:calc(100dvh - 100px);display:flex;flex-direction:column;justify-content:space-between}
-.heroTag{display:inline-flex;align-items:center;gap:7px;width:max-content;background:#27233e;color:#c8c1ff;border:1px solid #403a67;border-radius:999px;padding:8px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.11em;font-weight:950}
-h1{font-size:38px;line-height:1.02;letter-spacing:-.055em;margin:13px 0 10px}
-.lead{margin:0;color:#c8cad4;font-size:15px;line-height:1.48}
-.homeGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0}
-.choice{background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:13px}.choice small{display:block;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.choice b{display:block;margin-top:3px;font-size:14px}
-.primary{width:100%;border:0;border-radius:20px;padding:17px 18px;background:linear-gradient(135deg,var(--purple),#9d75ff);font-weight:1000;font-size:17px;box-shadow:0 12px 30px rgba(121,103,255,.28);cursor:pointer}
-.secondary{width:100%;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:18px;padding:14px;margin-top:10px;font-weight:850;cursor:pointer}
-.companionWrap{display:grid;place-items:center;padding:18px 0 8px;position:relative}
-.orbit{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#4d407c 0,#27243c 46%,transparent 47%);display:grid;place-items:center;position:relative;filter:drop-shadow(0 18px 35px rgba(89,63,171,.3))}
-.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(167,139,250,.28);border-radius:50%;inset:-12px;animation:spin 12s linear infinite}
-.orbit:after{inset:18px;border-style:dashed;animation-direction:reverse;animation-duration:8s}
-@keyframes spin{to{transform:rotate(360deg)}}
-.bot{width:105px;height:92px;border-radius:36px 36px 30px 30px;background:linear-gradient(160deg,#fff,#cbc7f7);position:relative;z-index:2;box-shadow:inset 0 -9px 0 rgba(64,47,120,.12),0 14px 30px rgba(0,0,0,.25);transition:.25s}
-.bot:before{content:"";position:absolute;left:17px;right:17px;top:23px;height:38px;border-radius:22px;background:#202332}
-.eye{position:absolute;width:11px;height:15px;background:#8df1d1;border-radius:50%;top:35px;z-index:3;box-shadow:0 0 14px #31d58b}.eye.l{left:35px}.eye.r{right:35px}
-.bot.happy{transform:translateY(-6px) rotate(-2deg)}.bot.happy .eye{height:9px;border-radius:10px 10px 2px 2px;transform:translateY(4px)}
-.bot.sad{transform:rotate(3deg) translateY(3px)}.bot.sad .eye{background:#ff8e9a}
-.antenna{position:absolute;width:7px;height:22px;background:#cbc7f7;left:49px;top:-18px;border-radius:8px}.antenna:after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--yellow);left:-4px;top:-8px;box-shadow:0 0 20px rgba(255,212,91,.75)}
-.bubble{position:absolute;right:-7px;top:4px;background:#fff;color:#171923;padding:10px 12px;border-radius:16px 16px 16px 4px;font-size:12px;font-weight:900;max-width:125px;z-index:5;transform:rotate(3deg)}
-.session{padding-bottom:8px}
-.sessionHead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.stageTitle{font-size:13px;font-weight:950;flex:1}.stageTitle small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
-.progress{height:8px;border-radius:999px;background:#282a38;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--purple),#45d7b0);transition:.35s}
-.gameCard{min-height:calc(100dvh - 118px);background:linear-gradient(180deg,#1b1d29,#13151e);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;position:relative}
-.gameTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.mission{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:1000;color:#c6bfff;background:#292540;border:1px solid #3d3760;padding:7px 9px;border-radius:999px}.hint{font-size:12px;color:var(--muted);font-weight:800}
-.gameTitle{font-size:28px;line-height:1.04;letter-spacing:-.04em;margin:5px 0 3px}.gameSub{color:var(--muted);font-size:13px;margin:0 0 14px}
-.playfield{flex:1;min-height:330px;background:linear-gradient(180deg,#262938,#202230);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:14px;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.actionRow{display:flex;gap:9px;margin-top:12px}.action{flex:1;border:0;border-radius:17px;padding:14px;background:var(--purple);font-weight:950;cursor:pointer}.action.ghost{background:#292b39;color:#d9dae1}.action:disabled{opacity:.45}
-.toast{position:absolute;left:15px;right:15px;bottom:15px;padding:13px 14px;border-radius:16px;font-size:13px;font-weight:850;z-index:20;transform:translateY(130%);transition:.25s;box-shadow:0 10px 30px rgba(0,0,0,.25)}.toast.show{transform:translateY(0)}.toast.good{background:#17392d;color:#88efc6;border:1px solid #245744}.toast.bad{background:#46212a;color:#ffb1ba;border:1px solid #6c303d}
-.pizzaArea{display:grid;grid-template-columns:1fr;place-items:center;flex:1}.order{background:#fff;color:#191a20;border-radius:19px 19px 19px 5px;padding:10px 13px;font-weight:950;font-size:14px;margin-bottom:8px;box-shadow:0 10px 25px rgba(0,0,0,.18)}
-#pizzaSvg{width:238px;height:238px;filter:drop-shadow(0 16px 18px rgba(0,0,0,.28))}
-.slice{cursor:pointer;stroke:#7a3d23;stroke-width:3;transition:.17s;transform-origin:120px 120px}.slice.selected{filter:brightness(1.18);transform:scale(.93)}.slice:hover{filter:brightness(1.08)}
-.plate{width:270px;height:34px;border-radius:50%;background:#d6d7e3;box-shadow:inset 0 -7px 0 #b7b9c7;margin-top:-23px}
-.counter{font-size:13px;font-weight:900;color:#ddd;margin-top:7px}
-.monsters{display:flex;gap:7px;justify-content:center;align-items:flex-end;flex:1;padding-top:6px}.monster{flex:1;max-width:96px;background:#343747;border:1px solid #45495c;border-radius:24px 24px 18px 18px;padding:11px 6px 9px;text-align:center;cursor:pointer;transition:.14s;min-height:137px;display:flex;flex-direction:column;justify-content:flex-end}.monster:active{transform:scale(.96)}.monsterFace{font-size:47px;line-height:1}.monsterCount{margin-top:4px;font-weight:1000;font-size:22px}.monster small{color:#afb2c1;font-size:10px}
-.cookiePile{text-align:center;background:#181a23;border-radius:17px;padding:10px;margin-top:10px}.cookiePile .cookies{font-size:28px;line-height:1.15;min-height:33px;word-break:break-all}.cookiePile b{font-size:13px}
-.gates{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;align-items:end;flex:1;padding:18px 0 8px}.gate{height:170px;border:2px solid #4d5166;background:linear-gradient(180deg,#2b2e3d,#1a1c26);border-radius:50px 50px 14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;position:relative;overflow:hidden;transition:.16s}.gate:before{content:"";position:absolute;inset:11px;border-radius:40px 40px 8px 8px;border:2px dashed rgba(255,255,255,.08)}.gate:active{transform:scale(.96)}.gate span{font-size:19px;font-weight:1000;z-index:2}.gate small{font-size:10px;color:#9da1b4;z-index:2}.gate.correct{border-color:var(--green);box-shadow:0 0 25px rgba(49,213,139,.3)}.gate.wrong{border-color:var(--red);animation:shake .28s}
-@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.rocket{font-size:46px;text-align:center;transition:.35s;filter:drop-shadow(0 10px 14px rgba(0,0,0,.35))}.rocket.fly{transform:translateY(-28px) scale(1.12)}
-.combo{text-align:center;color:var(--yellow);font-size:13px;font-weight:950;height:20px}
-.builder{display:grid;grid-template-columns:1fr;gap:12px;flex:1;align-content:center}.plot{width:220px;height:150px;background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(255,255,255,.06) 24px),repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,255,255,.06) 24px),#23362d;border:7px solid #a77b4f;border-radius:8px;margin:0 auto;transition:.25s;box-shadow:0 14px 25px rgba(0,0,0,.25);position:relative}.plot:after{content:"🌿";font-size:46px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-.dims{display:grid;grid-template-columns:1fr 1fr;gap:8px}.dim{background:#191b25;border-radius:17px;padding:10px;text-align:center}.dim b{display:block;font-size:13px}.stepper{display:flex;justify-content:center;align-items:center;gap:11px;margin-top:6px}.stepper button{width:37px;height:37px;border-radius:12px;border:1px solid var(--line);background:#2c2f3e;font-size:21px;font-weight:1000}.stepper span{font-size:23px;font-weight:1000;width:36px}.target{text-align:center;font-size:14px;font-weight:900;color:#ddd}.target strong{color:var(--yellow);font-size:21px}
-.bossField{align-items:center;justify-content:center;text-align:center}.boss{font-size:86px;filter:drop-shadow(0 15px 25px rgba(0,0,0,.35));animation:bossFloat 2s ease-in-out infinite}.boss.hit{animation:bossHit .3s}.bossBar{width:80%;height:13px;border-radius:999px;background:#34252d;overflow:hidden;margin:8px auto 17px;border:1px solid #53343e}.bossBar div{height:100%;width:100%;background:linear-gradient(90deg,#ff5f71,#ff9b70);transition:.35s}
-@keyframes bossFloat{50%{transform:translateY(-6px)}}@keyframes bossHit{50%{transform:scale(.86) rotate(8deg)}}
-.bossChallenge{width:100%;background:#191b25;border:1px solid var(--line);border-radius:20px;padding:14px}.bossOpts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.bossOpt{border:1px solid #3a3d4e;background:#282b38;padding:13px 8px;border-radius:14px;font-weight:950}.bossOpt:active{transform:scale(.96)}
-.reward{padding:22px;text-align:center;min-height:calc(100dvh - 100px);display:flex;flex-direction:column;justify-content:center}.reward h1{font-size:34px}.bigReward{font-size:74px;margin:7px}.rewardGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.rewardBox{background:#202332;border:1px solid var(--line);border-radius:18px;padding:13px}.rewardBox b{font-size:23px;display:block}.rewardBox span{font-size:11px;color:var(--muted)}
-.parents{padding:18px}.parents h1{font-size:30px}.back{border:1px solid var(--line);background:#222531;border-radius:14px;padding:10px 12px;font-weight:900}.statsGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.statCard{background:#202332;border:1px solid var(--line);border-radius:18px;padding:13px}.statCard b{display:block;font-size:23px}.statCard small{color:var(--muted)}.skill{background:#202332;border:1px solid var(--line);border-radius:17px;padding:12px;margin-top:8px}.skillLine{display:flex;justify-content:space-between;font-size:12px;font-weight:900}.skillTrack{height:7px;background:#303341;border-radius:99px;overflow:hidden;margin-top:8px}.skillFill{height:100%;background:linear-gradient(90deg,var(--purple),var(--green))}
-.confetti{position:fixed;width:9px;height:13px;border-radius:3px;z-index:100;pointer-events:none;animation:fall 900ms ease-out forwards}@keyframes fall{to{transform:translate(var(--dx),var(--dy)) rotate(540deg);opacity:0}}
-.flash{position:absolute;inset:0;background:rgba(49,213,139,.18);opacity:0;pointer-events:none}.flash.go{animation:flash .35s}@keyframes flash{50%{opacity:1}}
+.top{display:flex;align-items:center;gap:10px;height:54px}
+.logo{font-size:24px;font-weight:1000;letter-spacing:-.06em}.logo span{color:#7c6cff}
+.dots{display:flex;gap:6px;flex:1;justify-content:center}.dot{width:11px;height:11px;border-radius:50%;background:#e4d7ba;border:2px solid #fff}.dot.on{background:#7c6cff}.dot.done{background:#5ed49d}
+.star{font-weight:1000;background:#fff;border:2px solid #eddcae;border-radius:999px;padding:7px 10px}
+.screen{min-height:calc(100dvh - 86px);border-radius:30px;position:relative;overflow:hidden}
+.home{background:linear-gradient(#8ed6ff 0 43%,#80d9a1 43% 100%);padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.cloud{position:absolute;background:#fff;border-radius:99px;width:95px;height:33px;opacity:.9}.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}.cloud:before{width:42px;height:42px;left:15px;top:-20px}.cloud:after{width:48px;height:48px;right:10px;top:-24px}
+.c1{top:70px;left:-20px}.c2{top:135px;right:-28px;transform:scale(.8)}
+.home h1{font-size:42px;line-height:.98;letter-spacing:-.055em;margin:14px 0 8px;max-width:360px;text-shadow:0 2px 0 rgba(255,255,255,.4)}
+.home p{font-size:16px;font-weight:750;max-width:330px;line-height:1.35;margin:0}
+.hill{position:absolute;left:-20%;right:-20%;height:210px;bottom:-80px;border-radius:50% 50% 0 0;background:#53c882}
+.character{position:absolute;bottom:105px;right:30px;font-size:110px;filter:drop-shadow(0 12px 8px rgba(43,91,61,.18));transform:rotate(5deg)}
+.speech{position:absolute;right:26px;bottom:250px;background:white;border:3px solid #263238;border-radius:21px 21px 6px 21px;padding:10px 13px;font-weight:1000;max-width:150px;transform:rotate(3deg)}
+.homeBottom{position:relative;z-index:5}
+.course{display:inline-block;background:#fff6;border:2px solid #fff9;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:1000;margin-bottom:10px}
+.play{width:100%;border:0;background:#6f5cff;color:white;border-radius:20px;padding:18px;font-size:19px;font-weight:1000;box-shadow:0 7px 0 #5747d1;cursor:pointer}.play:active{transform:translateY(4px);box-shadow:0 3px 0 #5747d1}
+.parentsBtn{width:100%;border:0;background:transparent;padding:14px;font-weight:900}
+.scene{padding:18px;background:var(--paper);display:flex;flex-direction:column}
+.sceneHeader{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.badge{font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.08em;padding:7px 9px;border-radius:999px;background:#eee8ff;color:#6654d4}
+.scene h2{font-size:29px;line-height:1.02;letter-spacing:-.04em;margin:5px 0 3px}.scene p{margin:0;color:#6c6f70;font-weight:750;font-size:13px;line-height:1.35}
+.world{flex:1;margin-top:12px;border-radius:25px;min-height:430px;position:relative;overflow:hidden;padding:14px}
+.nextToast{position:absolute;left:14px;right:14px;bottom:14px;background:#24323b;color:#fff;border-radius:18px;padding:14px;font-weight:1000;text-align:center;transform:translateY(150%);transition:.25s;z-index:20}.nextToast.show{transform:translateY(0)}
+.mapWorld{background:linear-gradient(#9edcff 0 50%,#8bdc9c 50%)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:min(92vw,390px);margin:45px auto 0;background:#65bd72;padding:8px;border-radius:20px;box-shadow:inset 0 0 0 4px #52aa61}
+.cell{aspect-ratio:1;background:#f7e3aa;border:0;border-radius:11px;font-size:24px;font-weight:1000;box-shadow:0 4px 0 #d5bd79;position:relative}.cell.wall{background:#77a4b7;box-shadow:0 4px 0 #587b8a}.cell.visited{background:#fff1a8}.cell.current{background:#fff}.cell.current:after{content:"🧑‍🚀";position:absolute;inset:0;display:grid;place-items:center;font-size:28px}.cell.goal:before{content:"⭐";position:absolute;inset:0;display:grid;place-items:center;font-size:27px}
+.moveCount{text-align:center;margin-top:13px;background:#fff9;border-radius:999px;padding:8px 12px;font-weight:1000}
+.repairWorld{background:linear-gradient(#ffd78b,#ffc184)}
+.baskets{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:30px}.basket{border:0;background:#b9793b;border-radius:18px 18px 28px 28px;padding:10px 6px;min-height:170px;box-shadow:inset 0 -11px 0 #96602e,0 8px 0 rgba(116,69,33,.18);position:relative}.basket.sel{outline:5px solid #fff}.basket .kid{font-size:39px}.apples{font-size:25px;line-height:1.05;min-height:70px;display:flex;flex-wrap:wrap;justify-content:center;align-content:center}.basket b{display:block;background:#fff8;border-radius:999px;padding:5px;margin-top:6px}.repairHint{text-align:center;font-weight:1000;background:#fff8;border-radius:16px;padding:10px;margin-top:15px}
+.arrayWorld{background:linear-gradient(#c4b5ff,#8fa7ff)}
+.arrayControls{display:flex;justify-content:center;gap:10px;margin-top:12px}.control{background:#fff;border-radius:18px;padding:10px 12px;text-align:center;min-width:120px}.control small{display:block;font-weight:900;color:#777}.stepper{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:5px}.stepper button{width:36px;height:36px;border:0;border-radius:12px;background:#e9e4ff;font-weight:1000;font-size:21px}.stepper strong{font-size:23px}
+.droneGrid{display:grid;gap:5px;justify-content:center;align-content:center;margin:20px auto;min-height:220px}.drone{font-size:25px;background:#fff8;border-radius:8px;width:32px;height:32px;display:grid;place-items:center}
+.checkBtn{width:100%;border:0;border-radius:18px;background:#304a63;color:#fff;padding:15px;font-weight:1000;box-shadow:0 5px 0 #213445}
+.fracWorld{background:linear-gradient(#ffd6e6,#ffefb7)}
+.choc{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:280px;margin:48px auto 20px;background:#734729;padding:10px;border-radius:16px;box-shadow:0 8px 0 #4e2f1d}
+.square{aspect-ratio:1;border:0;border-radius:9px;background:#a7653b;box-shadow:inset 0 0 0 3px #bb7547;cursor:pointer}.square.on{background:#ffd45e;box-shadow:inset 0 0 0 3px #ffbd38;transform:scale(.92)}
+.fracCounter{text-align:center;font-weight:1000;background:#fff9;border-radius:999px;padding:8px}
+.timeWorld{background:linear-gradient(#9de4ff,#c4f2ff)}
+.station{font-size:66px;text-align:center;margin-top:18px}.timeline{width:90%;height:10px;background:#6db8d4;border-radius:999px;margin:34px auto;position:relative}.timeline:before{content:"17:20";position:absolute;right:-6px;top:15px;font-weight:1000}.timeline:after{content:"sale el autocar";position:absolute;right:-15px;top:35px;font-size:11px;font-weight:850}
+.clockBox{background:#fff;border:4px solid #27323a;border-radius:25px;padding:18px;margin:55px auto 12px;text-align:center;width:250px}.clockBox small{font-weight:900;color:#777}.clock{font-size:49px;font-weight:1000;letter-spacing:-.05em;margin:7px}.timeBtns{display:flex;gap:9px;justify-content:center}.timeBtns button{border:0;background:#e9f7ff;border-radius:14px;padding:11px 15px;font-weight:1000}
+.reward{background:linear-gradient(#ffd95d,#ffb45f);padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center}.reward .big{font-size:115px}.reward h2{font-size:36px;margin:0 0 8px;letter-spacing:-.05em}.reward p{font-weight:800}.scoreGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.score{background:#fff9;border:2px solid #fff;border-radius:18px;padding:12px}.score b{font-size:24px;display:block}.score small{font-weight:800}
+.parents{background:#fffdf6;padding:18px}.parents h2{font-size:31px;margin:15px 0 5px}.back{border:0;background:#eee8ff;color:#5949c4;padding:10px 13px;border-radius:14px;font-weight:1000}.skill{margin-top:10px;background:#fff;border:2px solid #eee3c8;border-radius:17px;padding:12px}.skillTop{display:flex;justify-content:space-between;font-weight:1000}.bar{height:8px;background:#eee6d2;border-radius:99px;overflow:hidden;margin-top:8px}.fill{height:100%;background:#69d4a0}.parentNote{font-size:12px;line-height:1.4;color:#777;font-weight:700;margin-top:14px}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="topbar">
-    <div class="logo">ne<em>x</em>o</div>
-    <div class="hud">
-      <div class="hudPill">⚡ <span id="hudEnergy">0</span></div>
-      <div class="hudPill">⭐ <span id="hudStars">0</span></div>
-    </div>
+  <div class="top">
+    <div class="logo">ne<span>x</span>o</div>
+    <div class="dots" id="dots"></div>
+    <div class="star">⭐ <span id="stars">0</span></div>
   </div>
 
-  <section id="home" class="shell home">
+  <section id="home" class="screen home">
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="hill"></div>
     <div>
-      <div class="heroTag">4.º Primaria · Matemáticas</div>
-      <h1>Hoy no estudias.<br>Hoy juegas.</h1>
-      <p class="lead">Cinco misiones cortas. Nexo decide qué toca y la sesión termina cuando completas el boss.</p>
-      <div class="companionWrap">
-        <div class="orbit">
-          <div id="homeBot" class="bot"><div class="antenna"></div><i class="eye l"></i><i class="eye r"></i></div>
-          <div class="bubble">¿Vamos a por el boss?</div>
-        </div>
-      </div>
-      <div class="homeGrid">
-        <div class="choice"><small>Curso</small><b>4.º Primaria</b></div>
-        <div class="choice"><small>Comunidad</small><b>Cataluña</b></div>
-      </div>
+      <div class="course">4.º Primaria · Matemáticas · Cataluña</div>
+      <h1>Una aventura<br>de 8 minutos.</h1>
+      <p>Hoy hay mapa, reparto, drones, chocolate y una misión contrarreloj.</p>
     </div>
-    <div>
-      <button id="startBtn" class="primary">JUGAR · 5 MISIONES</button>
-      <button id="parentsBtn" class="secondary">Modo padres</button>
+    <div class="character">🦊</div>
+    <div class="speech">¡Yo también juego!</div>
+    <div class="homeBottom">
+      <button class="play" id="play">EMPEZAR AVENTURA</button>
+      <button class="parentsBtn" id="parentsBtn">👨‍👩‍👧 Para madres y padres</button>
     </div>
   </section>
 
-  <section id="game" class="session hidden">
-    <div class="sessionHead">
-      <div class="stageTitle"><small>Sesión de hoy</small><span id="stageName">Misión 1</span></div>
-      <div style="width:45%"><div class="progress"><div id="progressBar"></div></div></div>
-    </div>
-    <div class="gameCard">
-      <div class="flash" id="flash"></div>
-      <div class="gameTop">
-        <div id="missionTag" class="mission">Fracciones</div>
-        <div id="missionHint" class="hint">Toca para jugar</div>
+  <section id="scene" class="screen scene hidden">
+    <div class="sceneHeader">
+      <div>
+        <div class="badge" id="badge"></div>
+        <h2 id="title"></h2>
+        <p id="sub"></p>
       </div>
-      <h2 id="gameTitle" class="gameTitle"></h2>
-      <p id="gameSub" class="gameSub"></p>
-      <div id="playfield" class="playfield"></div>
-      <div id="toast" class="toast"></div>
     </div>
+    <div class="world" id="world"></div>
+    <div class="nextToast" id="toast"></div>
   </section>
 
-  <section id="reward" class="shell reward hidden">
-    <div class="heroTag" style="margin:auto">Sesión completada</div>
-    <div class="bigReward">🎁</div>
-    <h1>Boss derrotado.</h1>
-    <p class="lead">Nexo ha ganado energía y mañana volverá con retos adaptados a lo que hoy ha costado más.</p>
-    <div class="rewardGrid">
-      <div class="rewardBox"><b id="rewardStars">0</b><span>estrellas ganadas</span></div>
-      <div class="rewardBox"><b id="rewardEnergy">0</b><span>energía conseguida</span></div>
-      <div class="rewardBox"><b id="rewardStrong">—</b><span>mejor hoy</span></div>
-      <div class="rewardBox"><b id="rewardWeak">—</b><span>reforzaremos</span></div>
+  <section id="reward" class="screen reward hidden">
+    <div class="big">🦊✨</div>
+    <h2>¡Aventura completada!</h2>
+    <p>No hay más por hoy. Mañana Nexo preparará otra mezcla de retos.</p>
+    <div class="scoreGrid">
+      <div class="score"><b id="rStars">0</b><small>estrellas</small></div>
+      <div class="score"><b id="rTries">0</b><small>intentos totales</small></div>
     </div>
-    <button id="rewardHome" class="primary">Volver al inicio</button>
+    <button class="play" id="homeAgain">VOLVER</button>
   </section>
 
-  <section id="parents" class="shell parents hidden">
-    <button id="backHome" class="back">← Volver</button>
-    <h1>Así va Alex</h1>
-    <p class="lead">Tú ves progreso. Él ve juegos.</p>
-    <div class="statsGrid" style="margin-top:16px">
-      <div class="statCard"><b id="pSessions">0</b><small>sesiones</small></div>
-      <div class="statCard"><b id="pStars">0</b><small>estrellas</small></div>
-    </div>
-    <h3 style="margin:20px 0 4px">Mapa de aprendizaje</h3>
-    <div id="skillsList"></div>
+  <section id="parents" class="screen parents hidden">
+    <button class="back" id="back">← Volver</button>
+    <h2>Lo que realmente ha trabajado</h2>
+    <p style="margin:0;color:#777;font-weight:750">El niño ve una aventura. Tú ves habilidades reales de 4.º.</p>
+    <div id="skillList"></div>
+    <div class="parentNote">Demo pedagógica: estos retos están construidos a partir de tipos de actividad presentes en el currículo y en evaluaciones diagnósticas de 4.º de Cataluña. La versión final necesitará validación sistemática por docentes antes de usarse como producto educativo.</div>
   </section>
 </div>
 
 <script>
 (function(){
-  var ids=function(x){return document.getElementById(x)};
-  var data=JSON.parse(localStorage.getItem("nexo-v1")||"{}");
-  var skills=data.skills||{frac:48,div:44,mult:52,peri:46};
-  var totalStars=data.totalStars||0, sessions=data.sessions||0, energy=data.energy||0;
-  var stage=0, sessionStars=0, sessionEnergy=0, results=[];
-  var games=["pizza","division","turbo","builder","boss"];
-  var current={};
-  var audioCtx=null;
-
-  function save(){
-    localStorage.setItem("nexo-v1",JSON.stringify({skills:skills,totalStars:totalStars,sessions:sessions,energy:energy}));
-  }
-  function sound(type){
-    try{
-      if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-      var o=audioCtx.createOscillator(),g=audioCtx.createGain();
-      o.connect(g);g.connect(audioCtx.destination);
-      o.type=type==="good"?"sine":"square";
-      o.frequency.value=type==="good"?680:180;
-      g.gain.setValueAtTime(.055,audioCtx.currentTime);
-      g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.18);
-      o.start();o.stop(audioCtx.currentTime+.18);
-    }catch(e){}
-  }
-  function show(id){
-    ["home","game","reward","parents"].forEach(function(x){ids(x).classList.add("hidden")});
-    ids(id).classList.remove("hidden");
-  }
-  function hud(){
-    ids("hudEnergy").textContent=energy+sessionEnergy;
-    ids("hudStars").textContent=totalStars+sessionStars;
-  }
-  function toast(msg,good){
-    var t=ids("toast");t.textContent=msg;t.className="toast show "+(good?"good":"bad");
-    setTimeout(function(){t.className="toast"},1200);
-  }
-  function flash(){
-    var f=ids("flash");f.classList.remove("go");void f.offsetWidth;f.classList.add("go");
-  }
-  function confetti(){
-    var colors=["#7967ff","#31d58b","#ffd45b","#54b7ff","#ff5f71"];
-    for(var i=0;i<24;i++){
-      var d=document.createElement("div");d.className="confetti";
-      d.style.left=(45+Math.random()*10)+"vw";d.style.top="45vh";
-      d.style.background=colors[i%colors.length];
-      d.style.setProperty("--dx",((Math.random()-.5)*260)+"px");
-      d.style.setProperty("--dy",(110+Math.random()*270)+"px");
-      document.body.appendChild(d);
-      setTimeout((function(x){return function(){x.remove()}})(d),1000);
-    }
-  }
-  function rewardSkill(skill,amount){
-    skills[skill]=Math.max(5,Math.min(100,(skills[skill]||40)+amount));
-    results.push({skill:skill,score:amount});
-  }
-  function winMini(skill,msg){
-    sound("good");flash();confetti();sessionStars+=1;sessionEnergy+=20;rewardSkill(skill,6);hud();toast(msg||"¡Perfecto!",true);
-  }
-  function miss(skill,msg){
-    sound("bad");rewardSkill(skill,-2);toast(msg||"Prueba otra vez",false);
-  }
-  function start(){
-    stage=0;sessionStars=0;sessionEnergy=0;results=[];hud();show("game");loadStage();
-  }
-  function nextStage(delay){
-    setTimeout(function(){
-      stage++;
-      if(stage>=games.length){finish()}else{loadStage()}
-    },delay||650);
-  }
-  function loadStage(){
-    ids("progressBar").style.width=(stage/games.length*100)+"%";
-    ids("stageName").textContent="Misión "+(stage+1)+" de "+games.length;
-    ids("playfield").innerHTML="";
-    var g=games[stage];
-    if(g==="pizza") pizza();
-    if(g==="division") division();
-    if(g==="turbo") turbo();
-    if(g==="builder") builder();
-    if(g==="boss") boss();
-  }
-
-  function polar(cx,cy,r,angle){
-    var a=(angle-90)*Math.PI/180;return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)};
-  }
-  function arcPath(cx,cy,r,start,end){
-    var s=polar(cx,cy,r,end),e=polar(cx,cy,r,start),large=end-start<=180?0:1;
-    return "M "+cx+" "+cy+" L "+s.x+" "+s.y+" A "+r+" "+r+" 0 "+large+" 0 "+e.x+" "+e.y+" Z";
-  }
-  function pizza(){
-    ids("missionTag").textContent="Pizzería";
-    ids("missionHint").textContent="Toca las porciones";
-    ids("gameTitle").textContent="Sirve exactamente 3/8";
-    ids("gameSub").textContent="La pizza es el problema. Selecciona lo que pide el cliente.";
-    var pf=ids("playfield");
-    pf.innerHTML='<div class="pizzaArea"><div class="order">🧑‍🍳 Pedido: <strong>3/8</strong> de pizza</div><svg id="pizzaSvg" viewBox="0 0 240 240"></svg><div class="plate"></div><div class="counter"><span id="sliceCount">0</span> de 8 porciones</div></div><div class="actionRow"><button id="clearPizza" class="action ghost">Limpiar</button><button id="servePizza" class="action">SERVIR 🍕</button></div>';
-    var svg=ids("pizzaSvg"),sel=[];
-    for(var i=0;i<8;i++){
-      var p=document.createElementNS("http://www.w3.org/2000/svg","path");
-      p.setAttribute("d",arcPath(120,120,103,i*45,(i+1)*45));
-      p.setAttribute("fill",i%2?"#f39b45":"#f5ad54");
-      p.setAttribute("class","slice");
-      p.setAttribute("data-i",i);
-      var pepper=document.createElementNS("http://www.w3.org/2000/svg","circle");
-      var pt=polar(120,120,60,i*45+22.5);pepper.setAttribute("cx",pt.x);pepper.setAttribute("cy",pt.y);pepper.setAttribute("r","8");pepper.setAttribute("fill","#bd3f3f");pepper.setAttribute("pointer-events","none");
-      p.onclick=function(){
-        var n=Number(this.getAttribute("data-i")),ix=sel.indexOf(n);
-        if(ix>=0){sel.splice(ix,1);this.classList.remove("selected")}else{sel.push(n);this.classList.add("selected")}
-        ids("sliceCount").textContent=sel.length;
-      };
-      svg.appendChild(p);svg.appendChild(pepper);
-    }
-    ids("clearPizza").onclick=function(){sel=[];Array.from(svg.querySelectorAll(".slice")).forEach(function(x){x.classList.remove("selected")});ids("sliceCount").textContent=0};
-    ids("servePizza").onclick=function(){
-      if(sel.length===3){winMini("frac","¡Pedido perfecto! 3 de 8.");ids("servePizza").disabled=true;nextStage(900)}
-      else{miss("frac",sel.length<3?"Faltan porciones.":"Te has pasado. Quita alguna.");}
-    };
-  }
-
-  function division(){
-    ids("missionTag").textContent="Reparto";
-    ids("missionHint").textContent="Dales galletas";
-    ids("gameTitle").textContent="12 galletas. 3 monstruos.";
-    ids("gameSub").textContent="Toca un monstruo para darle la siguiente galleta. Todos quieren lo mismo.";
-    var pf=ids("playfield");
-    pf.innerHTML='<div class="monsters" id="monsters"></div><div class="cookiePile"><div class="cookies" id="cookies">🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪🍪</div><b>Quedan <span id="cookieLeft">12</span></b></div><div class="actionRow"><button id="resetCookies" class="action ghost">Reiniciar</button><button id="checkCookies" class="action">COMPROBAR</button></div>';
-    var left=12,counts=[0,0,0],faces=["👾","👹","🤖"];
-    function draw(){
-      ids("cookieLeft").textContent=left;
-      ids("cookies").textContent="🍪".repeat(left);
-      Array.from(ids("monsters").children).forEach(function(m,i){m.querySelector(".monsterCount").textContent=counts[i]});
-    }
-    faces.forEach(function(face,i){
-      var m=document.createElement("button");m.className="monster";
-      m.innerHTML='<div class="monsterFace">'+face+'</div><div class="monsterCount">0</div><small>galletas</small>';
-      m.onclick=function(){
-        if(left<=0)return;
-        left--;counts[i]++;draw();sound("tap");
-      };
-      ids("monsters").appendChild(m);
-    });
-    ids("resetCookies").onclick=function(){left=12;counts=[0,0,0];draw()};
-    ids("checkCookies").onclick=function(){
-      if(left>0){toast("Todavía quedan "+left+" galletas.",false);return}
-      if(counts[0]===4&&counts[1]===4&&counts[2]===4){winMini("div","¡Reparto justo! 12 ÷ 3 = 4.");ids("checkCookies").disabled=true;nextStage(950)}
-      else{miss("div","No están iguales. Reinicia y reparte justo.");}
-    };
-  }
-
-  function turbo(){
-    ids("missionTag").textContent="Turbo";
-    ids("missionHint").textContent="3 puertas seguidas";
-    ids("gameTitle").textContent="Carga el cohete";
-    ids("gameSub").textContent="Toca la multiplicación que produce la energía exacta.";
-    var pf=ids("playfield"),round=0,combo=0;
-    pf.innerHTML='<div class="combo" id="combo"></div><div class="gates" id="gates"></div><div id="rocket" class="rocket">🚀</div>';
-    var rounds=[
-      {target:42,correct:"6 × 7",opts:["6 × 7","8 × 6","9 × 5"]},
-      {target:48,correct:"8 × 6",opts:["7 × 7","8 × 6","9 × 6"]},
-      {target:36,correct:"4 × 9",opts:["5 × 8","6 × 7","4 × 9"]}
-    ];
-    function drawRound(){
-      var r=rounds[round];ids("gameTitle").textContent="Necesitas "+r.target+" de energía";
-      ids("gates").innerHTML="";
-      r.opts.sort(function(){return Math.random()-.5}).forEach(function(opt){
-        var b=document.createElement("button");b.className="gate";b.innerHTML='<span>'+opt+'</span><small>PUERTA</small>';
-        b.onclick=function(){
-          if(opt===r.correct){
-            b.classList.add("correct");sound("good");combo++;ids("combo").textContent="⚡ COMBO x"+combo;ids("rocket").classList.add("fly");
-            setTimeout(function(){ids("rocket").classList.remove("fly");round++;if(round>=rounds.length){winMini("mult","¡Turbo completo!");nextStage(900)}else drawRound()},520);
-          }else{
-            b.classList.add("wrong");miss("mult","Esa puerta no da "+r.target+".");setTimeout(function(){b.classList.remove("wrong")},350);
-          }
-        };
-        ids("gates").appendChild(b);
-      });
-    }
-    drawRound();
-  }
-
-  function builder(){
-    ids("missionTag").textContent="Constructor";
-    ids("missionHint").textContent="Ajusta el jardín";
-    ids("gameTitle").textContent="Perímetro objetivo: 18 m";
-    ids("gameSub").textContent="Cambia largo y ancho hasta construir un jardín cuyo borde mida 18 metros.";
-    var pf=ids("playfield"),w=3,h=3;
-    pf.innerHTML='<div class="builder"><div class="target">Necesitamos <strong>18 m</strong> de valla</div><div id="plot" class="plot"></div><div class="dims"><div class="dim"><b>LARGO</b><div class="stepper"><button data-x="w" data-d="-1">−</button><span id="wVal">3</span><button data-x="w" data-d="1">+</button></div></div><div class="dim"><b>ANCHO</b><div class="stepper"><button data-x="h" data-d="-1">−</button><span id="hVal">3</span><button data-x="h" data-d="1">+</button></div></div></div><div class="target">Perímetro actual: <strong id="periNow">12 m</strong></div></div><div class="actionRow"><button id="buildBtn" class="action">CONSTRUIR 🌳</button></div>';
-    function draw(){
-      ids("wVal").textContent=w;ids("hVal").textContent=h;ids("periNow").textContent=(2*(w+h))+" m";
-      ids("plot").style.width=(135+w*16)+"px";ids("plot").style.height=(88+h*13)+"px";
-    }
-    Array.from(pf.querySelectorAll(".stepper button")).forEach(function(b){
-      b.onclick=function(){
-        var d=Number(this.getAttribute("data-d")),x=this.getAttribute("data-x");
-        if(x==="w")w=Math.max(2,Math.min(8,w+d));else h=Math.max(2,Math.min(8,h+d));draw();
-      };
-    });
-    ids("buildBtn").onclick=function(){
-      if(2*(w+h)===18){winMini("peri","¡Cerrado! "+w+" + "+h+" + "+w+" + "+h+" = 18.");ids("buildBtn").disabled=true;nextStage(950)}
-      else{miss("peri","Ese jardín necesita "+(2*(w+h))+" m. Busca exactamente 18.");}
-    };
-    draw();
-  }
-
-  function boss(){
-    ids("missionTag").textContent="BOSS FINAL";
-    ids("missionHint").textContent="3 escudos";
-    ids("gameTitle").textContent="Derrota al Glitch";
-    ids("gameSub").textContent="Tres retos rápidos. No hay conocimiento nuevo.";
-    var pf=ids("playfield"),phase=0,hp=100;
-    pf.classList.add("bossField");
-    pf.innerHTML='<div id="bossFace" class="boss">👾</div><div class="bossBar"><div id="bossHp"></div></div><div id="bossChallenge" class="bossChallenge"></div>';
-    var challenges=[
-      {q:"Rompe el escudo de 56",opts:["7 × 8","6 × 8","9 × 6"],a:"7 × 8",skill:"mult"},
-      {q:"El boss tiene 16 orbes y 4 brazos. ¿Cuántos por brazo?",opts:["3","4","5"],a:"4",skill:"div"},
-      {q:"Le queda media barra de energía. ¿Qué fracción es?",opts:["1/2","1/3","2/3"],a:"1/2",skill:"frac"}
-    ];
-    function phaseDraw(){
-      var c=challenges[phase],box=ids("bossChallenge");
-      box.innerHTML='<strong>'+c.q+'</strong><div class="bossOpts"></div>';
-      c.opts.sort(function(){return Math.random()-.5}).forEach(function(opt){
-        var b=document.createElement("button");b.className="bossOpt";b.textContent=opt;
-        b.onclick=function(){
-          if(opt===c.a){
-            sound("good");hp-=34;ids("bossHp").style.width=Math.max(0,hp)+"%";ids("bossFace").classList.add("hit");
-            rewardSkill(c.skill,4);sessionEnergy+=10;hud();setTimeout(function(){ids("bossFace").classList.remove("hit")},320);
-            phase++;
-            if(phase>=challenges.length){
-              sessionStars+=2;sessionEnergy+=30;hud();confetti();toast("¡BOSS DERROTADO!",true);setTimeout(finish,1100);
-            }else setTimeout(phaseDraw,420);
-          }else{miss(c.skill,"El escudo aguanta. Prueba otra.");}
-        };
-        box.querySelector(".bossOpts").appendChild(b);
-      });
-    }
-    phaseDraw();
-  }
-
-  function finish(){
-    ids("progressBar").style.width="100%";
-    sessions++;totalStars+=sessionStars;energy+=sessionEnergy;save();hud();
-    var ordered=Object.keys(skills).sort(function(a,b){return skills[b]-skills[a]});
-    var labels={frac:"Fracciones",div:"División",mult:"Multiplicación",peri:"Perímetro"};
-    ids("rewardStars").textContent="+"+sessionStars;
-    ids("rewardEnergy").textContent="+"+sessionEnergy;
-    ids("rewardStrong").textContent=labels[ordered[0]];
-    ids("rewardWeak").textContent=labels[ordered[ordered.length-1]];
-    show("reward");
-  }
-
-  function parents(){
-    ids("pSessions").textContent=sessions;
-    ids("pStars").textContent=totalStars;
-    var labels={frac:"Fracciones",div:"División y reparto",mult:"Multiplicación",peri:"Perímetro"};
-    var list=ids("skillsList");list.innerHTML="";
-    Object.keys(skills).sort(function(a,b){return skills[a]-skills[b]}).forEach(function(k){
-      var d=document.createElement("div");d.className="skill";
-      d.innerHTML='<div class="skillLine"><span>'+labels[k]+'</span><span>'+Math.round(skills[k])+'%</span></div><div class="skillTrack"><div class="skillFill" style="width:'+skills[k]+'%"></div></div>';
-      list.appendChild(d);
-    });
-    show("parents");
-  }
-
-  ids("startBtn").onclick=start;
-  ids("parentsBtn").onclick=parents;
-  ids("backHome").onclick=function(){show("home")};
-  ids("rewardHome").onclick=function(){show("home")};
-  hud();
+const $=id=>document.getElementById(id);
+const saved=JSON.parse(localStorage.getItem("nexo-kid-v2")||"{}");
+let mastery=saved.mastery||{route:50,division:50,multiplication:50,fraction:50,time:50};
+let stars=saved.stars||0,sessions=saved.sessions||0;
+let idx=0,tries=0,sessionStars=0;
+const games=["route","division","array","fraction","time"];
+const labels={route:"Orientación y recorridos",division:"División y reparto",multiplication:"Estructura multiplicativa",fraction:"Fracciones sencillas",time:"Tiempo y duración"};
+function save(){localStorage.setItem("nexo-kid-v2",JSON.stringify({mastery,stars,sessions}))}
+function show(id){["home","scene","reward","parents"].forEach(x=>$(x).classList.add("hidden"));$(id).classList.remove("hidden")}
+function dots(){ $("dots").innerHTML=""; for(let i=0;i<5;i++){let d=document.createElement("i");d.className="dot "+(i<idx?"done":i===idx?"on":"");$("dots").appendChild(d)}}
+function toast(msg,ok=true,cb){let t=$("toast");t.textContent=msg;t.style.background=ok?"#24323b":"#8d3945";t.classList.add("show");setTimeout(()=>{t.classList.remove("show");if(cb)cb()},850)}
+function success(skill,msg){sessionStars++;stars++;mastery[skill]=Math.min(100,mastery[skill]+6);$("stars").textContent=stars;toast(msg,true,()=>{idx++;if(idx>=games.length)finish();else load()})}
+function miss(skill,msg){tries++;mastery[skill]=Math.max(10,mastery[skill]-1);toast(msg,false)}
+function load(){show("scene");dots();$("world").className="world";$("world").innerHTML="";let g=games[idx];if(g==="route")route();if(g==="division")division();if(g==="array")arrayGame();if(g==="fraction")fraction();if(g==="time")timeGame()}
+function start(){idx=0;tries=0;sessionStars=0;load()}
+function route(){
+ $("badge").textContent="MAPA";$("title").textContent="Llega hasta la estrella";$("sub").textContent="Muévete por casillas vecinas. Las rocas bloquean el camino.";
+ let w=$("world");w.classList.add("mapWorld");
+ let walls=[2,7,12,17,18],goal=24,current=0,moves=0,visited=[0];
+ w.innerHTML='<div class="grid" id="grid"></div><div class="moveCount">Pasos: <span id="moves">0</span></div>';
+ function draw(){
+  let g=$("grid");g.innerHTML="";
+  for(let i=0;i<25;i++){let b=document.createElement("button");b.className="cell";if(walls.includes(i))b.classList.add("wall");if(visited.includes(i))b.classList.add("visited");if(i===current)b.classList.add("current");if(i===goal)b.classList.add("goal");b.disabled=walls.includes(i);b.onclick=()=>move(i);g.appendChild(b)}
+  $("moves").textContent=moves;
+ }
+ function move(i){let r=Math.floor(current/5),c=current%5,rr=Math.floor(i/5),cc=i%5;if(Math.abs(r-rr)+Math.abs(c-cc)!==1){miss("route","Solo puedes ir a una casilla que toque la tuya.");return}current=i;moves++;visited.push(i);tries++;draw();if(i===goal){success("route","¡Ruta completada! Has leído el mapa.")}}
+ draw();
+}
+function division(){
+ $("badge").textContent="REPARA";$("title").textContent="Este reparto está mal";$("sub").textContent="Hay 12 manzanas. Los tres niños deben tener exactamente las mismas.";
+ let w=$("world");w.classList.add("repairWorld");
+ let counts=[5,4,3],selected=null;
+ w.innerHTML='<div class="baskets" id="baskets"></div><div class="repairHint" id="repairHint">Toca una cesta para coger una manzana y después otra para dejarla.</div>';
+ function draw(){let box=$("baskets");box.innerHTML="";["👧","🧒","👦"].forEach((kid,i)=>{let b=document.createElement("button");b.className="basket"+(selected===i?" sel":"");b.innerHTML='<div class="kid">'+kid+'</div><div class="apples">'+"🍎".repeat(counts[i])+'</div><b>'+counts[i]+' manzanas</b>';b.onclick=()=>tap(i);box.appendChild(b)})}
+ function tap(i){if(selected===null){if(counts[i]===0)return;selected=i;$("repairHint").textContent="Ahora toca dónde quieres dejarla.";draw()}else if(selected===i){selected=null;$("repairHint").textContent="Movimiento cancelado.";draw()}else{counts[selected]--;counts[i]++;selected=null;tries++;draw();$("repairHint").textContent="¿Ya es justo para los tres?";if(counts.every(x=>x===4))success("division","¡Arreglado! 12 repartidas entre 3 = 4 para cada uno.")}}
+ draw();
+}
+function arrayGame(){
+ $("badge").textContent="DRONES";$("title").textContent="Forma exactamente 24 drones";$("sub").textContent="Elige filas y columnas. Busca una formación rectangular que tenga 24 en total.";
+ let w=$("world");w.classList.add("arrayWorld");
+ let rows=4,cols=4;
+ w.innerHTML='<div class="arrayControls"><div class="control"><small>FILAS</small><div class="stepper"><button id="rm">−</button><strong id="rv">4</strong><button id="rp">+</button></div></div><div class="control"><small>COLUMNAS</small><div class="stepper"><button id="cm">−</button><strong id="cv">4</strong><button id="cp">+</button></div></div></div><div class="droneGrid" id="droneGrid"></div><button class="checkBtn" id="checkArray">¿SON 24? 🚁</button>';
+ function draw(){ $("rv").textContent=rows;$("cv").textContent=cols;let g=$("droneGrid");g.style.gridTemplateColumns='repeat('+cols+',32px)';g.innerHTML="";for(let i=0;i<rows*cols;i++){let d=document.createElement("div");d.className="drone";d.textContent="🚁";g.appendChild(d)}}
+ $("rm").onclick=()=>{rows=Math.max(2,rows-1);draw()};$("rp").onclick=()=>{rows=Math.min(8,rows+1);draw()};$("cm").onclick=()=>{cols=Math.max(2,cols-1);draw()};$("cp").onclick=()=>{cols=Math.min(8,cols+1);draw()};
+ $("checkArray").onclick=()=>{tries++;if(rows*cols===24)success("multiplication","¡Exacto! "+rows+" × "+cols+" = 24.");else miss("multiplication","Ahora hay "+(rows*cols)+" drones. Necesitas exactamente 24.")};
+ draw();
+}
+function fraction(){
+ $("badge").textContent="FRACCIÓN";$("title").textContent="Colorea 3/4 de la tableta";$("sub").textContent="La tableta tiene 8 partes iguales. ¿Cuántas deben quedar marcadas?";
+ let w=$("world");w.classList.add("fracWorld");
+ let on=new Set();
+ w.innerHTML='<div class="choc" id="choc"></div><div class="fracCounter"><span id="fracCount">0</span> de 8 partes marcadas</div><button class="checkBtn" style="margin-top:15px" id="checkFrac">COMPROBAR 🍫</button>';
+ for(let i=0;i<8;i++){let b=document.createElement("button");b.className="square";b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.classList.toggle("on");$("fracCount").textContent=on.size};$("choc").appendChild(b)}
+ $("checkFrac").onclick=()=>{tries++;if(on.size===6)success("fraction","¡Eso es! 3/4 de 8 partes son 6.");else miss("fraction","Mira la tableta entera: 3 de cada 4 partes deben estar marcadas.")};
+}
+function timeGame(){
+ $("badge").textContent="CONTRARRELOJ";$("title").textContent="Hay que llegar 30 min antes";$("sub").textContent="El autocar sale a las 17:20. Ajusta el reloj a la hora a la que debes estar allí.";
+ let w=$("world");w.classList.add("timeWorld");
+ let mins=17*60+20;
+ w.innerHTML='<div class="station">🚌</div><div class="timeline"></div><div class="clockBox"><small>HORA DE LLEGADA</small><div class="clock" id="clock">17:20</div><div class="timeBtns"><button id="minus">− 5 min</button><button id="plus">+ 5 min</button></div></div><button class="checkBtn" id="checkTime">LLEGAR A ESTA HORA</button>';
+ function draw(){let h=Math.floor(mins/60)%24,m=mins%60;$("clock").textContent=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")}
+ $("minus").onclick=()=>{mins-=5;draw()};$("plus").onclick=()=>{mins+=5;draw()};
+ $("checkTime").onclick=()=>{tries++;if(mins===16*60+50)success("time","¡A tiempo! 17:20 menos 30 min = 16:50.");else miss("time","Todavía no. Cuenta 30 minutos hacia atrás desde las 17:20.")};
+ draw();
+}
+function finish(){sessions++;save();$("rStars").textContent=sessionStars;$("rTries").textContent=tries;show("reward");idx=5;dots()}
+function parents(){show("parents");$("skillList").innerHTML="";Object.keys(labels).forEach(k=>{let d=document.createElement("div");d.className="skill";d.innerHTML='<div class="skillTop"><span>'+labels[k]+'</span><span>'+Math.round(mastery[k])+'%</span></div><div class="bar"><div class="fill" style="width:'+mastery[k]+'%"></div></div>';$("skillList").appendChild(d)})}
+$("play").onclick=start;$("parentsBtn").onclick=parents;$("back").onclick=()=>show("home");$("homeAgain").onclick=()=>show("home");$("stars").textContent=stars;dots();
 })();
 </script>
 </body>
