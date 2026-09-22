@@ -193,6 +193,66 @@ button{font:inherit}
  .bossScene .world{min-height:calc(100dvh - 78px)}
  .modulePanel{padding:12px}
 }
+
+/* V6 — WORLD, PERSISTENT PROGRESSION, CONSISTENT GAME ART */
+.metaShip{position:absolute;left:18px;bottom:118px;z-index:4;width:150px;height:105px;filter:drop-shadow(0 10px 7px rgba(35,72,50,.18))}
+.metaShip svg{width:100%;height:100%}
+.shipSocket{fill:#dce8ee;stroke:#263238;stroke-width:4}
+.shipSocket.filled{fill:#ffe15f}
+.shipProgress{position:absolute;left:20px;bottom:94px;z-index:5;background:#fff;border:3px solid #263238;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:1000}
+.divisionScene,.arrayScene,.fractionScene,.timeScene{padding:0}
+.divisionScene .sceneHeader,.arrayScene .sceneHeader,.fractionScene .sceneHeader,.timeScene .sceneHeader{display:none}
+.divisionScene .world,.arrayScene .world,.fractionScene .world,.timeScene .world{margin:0;border-radius:0;min-height:calc(100dvh - 86px);padding:14px}
+.gameHud2{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.gameMission2{font-size:17px;font-weight:1000;letter-spacing:-.02em}
+.gameTiny2{font-size:11px;font-weight:900;background:#fff9;border:2px solid #fff;border-radius:999px;padding:6px 9px;white-space:nowrap}
+.divisionScene .world{background:linear-gradient(180deg,#ffd27b 0 42%,#ef9c60 42% 100%)}
+.baskets{margin-top:8px;align-items:end}
+.basket{background:#a86b39;border:4px solid #74431f;box-shadow:inset 0 -10px 0 #85512d,0 8px 0 rgba(99,55,24,.15)}
+.kidArt{width:62px;height:62px;margin:0 auto 4px;position:relative}
+.kidHead{position:absolute;width:43px;height:43px;left:10px;top:4px;border:3px solid #263238;border-radius:50%;background:#f0b77c}
+.kidHair{position:absolute;width:45px;height:22px;left:9px;top:2px;border-radius:24px 24px 10px 10px;background:#563a2c;border:3px solid #263238}
+.kidBody{position:absolute;width:48px;height:26px;left:7px;bottom:0;border:3px solid #263238;border-radius:16px 16px 5px 5px;background:#7f8cff}
+.appleDots{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:4px;min-height:66px;padding:4px}
+.appleDot{width:22px;height:22px;border-radius:48% 48% 55% 55%;background:#ef5b4e;border:2px solid #873329;position:relative;box-shadow:inset -3px -3px 0 rgba(130,35,31,.18)}
+.appleDot:before{content:"";position:absolute;width:4px;height:7px;background:#5c452b;left:9px;top:-5px;border-radius:3px}
+.appleDot:after{content:"";position:absolute;width:7px;height:4px;background:#57a75e;left:11px;top:-4px;border-radius:8px;transform:rotate(-24deg)}
+.equalMeter{height:12px;border-radius:999px;background:#fff7;margin:13px 4px 6px;overflow:hidden;border:2px solid #fff8}
+.equalMeter>div{height:100%;width:0;background:#5ed49d;transition:.25s}
+.repairHint{background:#fff;border:3px solid #263238;box-shadow:0 5px 0 rgba(38,50,56,.14)}
+.arrayScene .world{background:linear-gradient(180deg,#b9b0ff,#7c8ee9)}
+.control{border:3px solid #263238;box-shadow:0 5px 0 rgba(38,50,56,.15)}
+.drone{background:transparent;border-radius:0;position:relative}
+.droneUnit{width:100%;height:100%;position:relative}
+.droneUnit:before{content:"";position:absolute;left:24%;right:24%;top:24%;bottom:24%;background:#f9fbff;border:2px solid #263238;border-radius:8px;box-shadow:inset 0 -3px 0 #dbe6ec}
+.droneUnit:after{content:"";position:absolute;left:43%;right:43%;top:42%;bottom:42%;background:#68d6ff;border-radius:50%;border:1px solid #263238}
+.rotor{position:absolute;width:38%;height:4px;background:#263238;top:19%;border-radius:4px}.rotor.l{left:1%}.rotor.r{right:1%}
+.arrayEquation{text-align:center;background:#fff;border:3px solid #263238;border-radius:16px;padding:8px;font-size:18px;font-weight:1000;margin:6px auto 8px;max-width:240px}
+.fractionScene .world{background:linear-gradient(180deg,#ffcedf,#ffe39a)}
+.choc{border:4px solid #4e2f1d;box-shadow:0 8px 0 rgba(78,47,29,.25)}
+.fracOrder{background:#fff;border:3px solid #263238;border-radius:18px;padding:10px 12px;text-align:center;font-weight:1000;margin:6px auto 0;max-width:300px}
+.timeScene .world{background:linear-gradient(180deg,#8fe0ff 0 47%,#79c98c 47% 100%)}
+.stationArt{position:relative;width:min(82%,330px);height:150px;margin:16px auto 0;background:#f9f2d6;border:5px solid #263238;border-radius:18px 18px 8px 8px;box-shadow:0 9px 0 rgba(38,50,56,.17)}
+.stationArt:before{content:"";position:absolute;left:12%;right:12%;top:18px;height:38px;background:#73c8f3;border:4px solid #263238;border-radius:8px}
+.stationArt:after{content:"";position:absolute;width:58px;height:60px;left:50%;bottom:0;transform:translateX(-50%);background:#92654a;border:4px solid #263238;border-bottom:0;border-radius:9px 9px 0 0}
+.busArt{position:absolute;width:112px;height:55px;left:50%;bottom:-20px;transform:translateX(-50%);background:#ffcf59;border:4px solid #263238;border-radius:12px 12px 8px 8px}
+.busArt:before{content:"";position:absolute;left:10px;right:10px;top:8px;height:20px;background:#8cd9f6;border:3px solid #263238;border-radius:5px}
+.wheel{position:absolute;width:19px;height:19px;background:#263238;border-radius:50%;bottom:-12px}.wheel.l{left:15px}.wheel.r{right:15px}
+.clockBox{border-width:4px;box-shadow:0 7px 0 rgba(38,50,56,.16);margin-top:42px}
+.dayStamp{position:absolute;right:18px;top:18px;z-index:6;background:#fff;border:3px solid #263238;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:1000}
+.telemetryNote{margin-top:14px;background:#edf8ff;border:2px solid #c7e6f6;border-radius:16px;padding:11px;font-size:11px;line-height:1.4;color:#436270;font-weight:750}
+.sessionFacts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.sessionFact{background:#fff;border:2px solid #eee3c8;border-radius:14px;padding:10px}
+.sessionFact b{display:block;font-size:18px}.sessionFact small{color:#777;font-weight:800}
+@media(max-width:390px){
+ .metaShip{width:125px;height:90px;left:10px}
+ .shipProgress{left:12px}
+ .kidArt{width:52px;height:54px}
+ .kidHead{width:37px;height:37px;left:8px}.kidHair{width:39px;left:7px}.kidBody{width:42px;left:5px}
+ .appleDot{width:18px;height:18px}
+ .gameMission2{font-size:15px}
+}
+
 </style>
 </head>
 <body>
@@ -223,7 +283,13 @@ button{font:inherit}
 <circle cx="62" cy="106" r="7" fill="#ffb0a2" opacity=".65"/><circle cx="118" cy="106" r="7" fill="#ffb0a2" opacity=".65"/>
 <path d="M125 119 C150 113 154 135 140 145 C134 149 126 148 120 144" fill="none" stroke="#ff8e62" stroke-width="15" stroke-linecap="round"/>
 </svg></div>
-    <div class="homeBottom">
+    <div class="metaShip" id="metaShip" aria-hidden="true">
+<svg viewBox="0 0 180 120">
+<path d="M90 8C60 28 51 58 57 91l33 20 33-20c6-33-3-63-33-83Z" fill="#f8fbff" stroke="#263238" stroke-width="5"/>
+<circle cx="90" cy="50" r="18" fill="#84dfff" stroke="#263238" stroke-width="5"/>
+<path d="M57 77 35 99l24-4M123 77l22 22-24-4" fill="#ff8e62" stroke="#263238" stroke-width="5" stroke-linejoin="round"/>
+<circle id="sock1" class="shipSocket" cx="72" cy="82" r="6"/><circle id="sock2" class="shipSocket" cx="84" cy="89" r="6"/><circle id="sock3" class="shipSocket" cx="96" cy="89" r="6"/><circle id="sock4" class="shipSocket" cx="108" cy="82" r="6"/><circle id="sock5" class="shipSocket" cx="90" cy="75" r="6"/>
+</svg></div><div class="shipProgress" id="shipProgress">Nave: 0/5 piezas</div><div class="homeBottom">
       <button class="play" id="play">JUGAR</button>
       <button class="parentsBtn" id="parentsBtn">Para madres y padres</button>
     </div>
@@ -271,8 +337,11 @@ const $=id=>document.getElementById(id);
 const saved=JSON.parse(localStorage.getItem("nexo-kid-v2")||"{}");
 let mastery=saved.mastery||{route:50,division:50,multiplication:50,fraction:50,time:50};
 let stars=saved.stars||0,sessions=saved.sessions||0;
-let idx=0,tries=0,sessionStars=0,parts=0,bonusFound=false,buddyTimer=null;
-const games=["route","division","array","fraction","time","boss"];
+let metaParts=Math.min(5,saved.metaParts||0),telemetry=saved.telemetry||[];
+let idx=0,tries=0,sessionStars=0,parts=0,bonusFound=false,buddyTimer=null,gameStartedAt=0,gameAttempts=0;
+const daySeed=Math.floor(Date.now()/86400000);
+const middle=(daySeed%2===0)?["division","array","fraction","time"]:["fraction","time","division","array"];
+const games=["route",...middle,"boss"];
 const labels={route:"Orientación y recorridos",division:"División y reparto",multiplication:"Estructura multiplicativa",fraction:"Fracciones sencillas",time:"Tiempo y duración"};
 let audioCtx=null;
 function tone(freq=440,dur=.08,type="sine"){
@@ -285,7 +354,17 @@ function tone(freq=440,dur=.08,type="sine"){
  }catch(e){}
 }
 function buzz(ms=20){try{if(navigator.vibrate)navigator.vibrate(ms)}catch(e){}}
-function save(){localStorage.setItem("nexo-kid-v2",JSON.stringify({mastery,stars,sessions}))}
+function save(){localStorage.setItem("nexo-kid-v2",JSON.stringify({mastery,stars,sessions,metaParts,telemetry:telemetry.slice(-30)}))}
+function renderMeta(){
+ if($("shipProgress"))$("shipProgress").textContent="Nave: "+metaParts+"/5 piezas";
+ for(let i=1;i<=5;i++){const e=$("sock"+i);if(e)e.classList.toggle("filled",i<=metaParts)}
+}
+function logGame(name,successFlag){
+ const ms=Math.max(0,Date.now()-gameStartedAt);
+ telemetry.push({name,success:!!successFlag,attempts:gameAttempts,seconds:Math.round(ms/1000),day:daySeed});
+ if(telemetry.length>30)telemetry=telemetry.slice(-30);
+}
+function beginGame(){gameStartedAt=Date.now();gameAttempts=0}
 function show(id){["home","scene","reward","parents"].forEach(x=>$(x).classList.add("hidden"));if($("buddy"))$("buddy").classList.add("hidden");$(id).classList.remove("hidden")}
 function buddySay(text,ms=1700){
  clearTimeout(buddyTimer);if(!$("buddy"))return;
@@ -297,7 +376,7 @@ function partFlash(){
  document.body.appendChild(d);setTimeout(()=>d.remove(),1000);
 }
 function earnPart(){
- if(parts<5){parts++;partFlash();tone(820,.08);setTimeout(()=>tone(1040,.11),85)}
+ if(parts<5){parts++;metaParts=Math.min(5,metaParts+1);partFlash();renderMeta();tone(820,.08);setTimeout(()=>tone(1040,.11),85)}
 }
 function dots(){
  $("dots").innerHTML="";
@@ -309,14 +388,15 @@ function dots(){
 }
 function toast(msg,ok=true,cb){let t=$("toast");t.textContent=msg;t.style.background=ok?"#24323b":"#8d3945";t.classList.add("show");setTimeout(()=>{t.classList.remove("show");if(cb)cb()},850)}
 function success(skill,msg){
+ gameAttempts++;logGame(games[idx],true);
  sessionStars++;stars++;mastery[skill]=Math.min(100,mastery[skill]+6);$("stars").textContent=stars;
  earnPart();buddySay(["¡Eso ha sido bueno!","¡Una pieza más!","¡Vamos, vamos!","¡La nave está casi!"][Math.min(parts-1,3)]);
  toast(msg,true,()=>{idx++;if(idx>=games.length)finish();else load()})
 }
-function miss(skill,msg){tries++;mastery[skill]=Math.max(10,mastery[skill]-1);buddySay(["Mmm… míralo otra vez.","Casi. Prueba de otra forma.","Yo también me he liado. Otra."][tries%3]);toast(msg,false)}
+function miss(skill,msg){tries++;gameAttempts++;mastery[skill]=Math.max(10,mastery[skill]-1);buddySay(["Mmm… míralo otra vez.","Casi. Prueba de otra forma.","Yo también me he liado. Otra."][tries%3]);toast(msg,false)}
 function load(){
  show("scene");$("scene").className="screen scene";dots();$("world").className="world";$("world").innerHTML="";
- let g=games[idx];
+ let g=games[idx];beginGame();
  if(g==="route")route();
  if(g==="division")division();
  if(g==="array")arrayGame();
@@ -455,35 +535,48 @@ function route(){
  draw();
 }
 function division(){
+ $("scene").classList.add("divisionScene");
  $("badge").textContent="REPARA";$("title").textContent="Este reparto está mal";$("sub").textContent="Hay 12 manzanas. Los tres niños deben tener exactamente las mismas.";
  let w=$("world");w.classList.add("repairWorld");
  const hard=mastery.division>=65;
  let counts=hard?[7,5,3]:[5,4,3],selected=null,target=hard?5:4,total=hard?15:12;
  $("title").textContent="Este reparto está mal";
  $("sub").textContent="Hay "+total+" manzanas. Los tres niños deben tener exactamente las mismas.";
- w.innerHTML='<div class="baskets" id="baskets"></div><div class="repairHint" id="repairHint">Toca una cesta para coger una manzana y después otra para dejarla.</div>';
- function draw(){let box=$("baskets");box.innerHTML="";["👧","🧒","👦"].forEach((kid,i)=>{let b=document.createElement("button");b.className="basket"+(selected===i?" sel":"");b.innerHTML='<div class="kid">'+kid+'</div><div class="apples">'+"🍎".repeat(counts[i])+'</div><b>'+counts[i]+' manzanas</b>';b.onclick=()=>tap(i);box.appendChild(b)})}
+ w.innerHTML='<div class="gameHud2"><div class="gameMission2">Haz que el reparto sea justo</div><div class="gameTiny2">'+total+' objetos · 3 cestas</div></div><div class="baskets" id="baskets"></div><div class="equalMeter"><div id="equalFill"></div></div><div class="repairHint" id="repairHint">Toca una cesta para coger una manzana y después otra para dejarla.</div>';
+ function draw(){
+ let box=$("baskets");box.innerHTML="";
+ counts.forEach((count,i)=>{
+  let b=document.createElement("button");b.className="basket"+(selected===i?" sel":"");
+  let dots="";for(let j=0;j<count;j++)dots+='<i class="appleDot"></i>';
+  b.innerHTML='<div class="kidArt"><i class="kidBody"></i><i class="kidHead"></i><i class="kidHair"></i></div><div class="appleDots">'+dots+'</div><b>'+count+'</b>';
+  b.onclick=()=>tap(i);box.appendChild(b)
+ });
+ const spread=Math.max(...counts)-Math.min(...counts);
+ if($("equalFill"))$("equalFill").style.width=Math.max(8,100-spread*28)+"%";
+}
  function tap(i){if(selected===null){if(counts[i]===0)return;selected=i;$("repairHint").textContent="Ahora toca dónde quieres dejarla.";draw()}else if(selected===i){selected=null;$("repairHint").textContent="Movimiento cancelado.";draw()}else{counts[selected]--;counts[i]++;selected=null;tries++;draw();$("repairHint").textContent="¿Ya es justo para los tres?";if(counts.every(x=>x===target))success("division","¡Arreglado! "+total+" repartidas entre 3 = "+target+" para cada uno.")}}
  draw();
 }
 function arrayGame(){
+ $("scene").classList.add("arrayScene");
  $("badge").textContent="DRONES";$("title").textContent="Forma exactamente 24 drones";$("sub").textContent="Elige filas y columnas. Busca una formación rectangular que tenga 24 en total.";
  let w=$("world");w.classList.add("arrayWorld");
  const target=mastery.multiplication>=65?36:24;
  $("title").textContent="Forma exactamente "+target+" drones";
  let rows=4,cols=4;
- w.innerHTML='<div class="arrayControls"><div class="control"><small>FILAS</small><div class="stepper"><button id="rm">−</button><strong id="rv">4</strong><button id="rp">+</button></div></div><div class="control"><small>COLUMNAS</small><div class="stepper"><button id="cm">−</button><strong id="cv">4</strong><button id="cp">+</button></div></div></div><div class="droneGrid" id="droneGrid"></div><button class="checkBtn" id="checkArray">¿SON 24? 🚁</button>';
- function draw(){ $("rv").textContent=rows;$("cv").textContent=cols;let g=$("droneGrid");g.style.gridTemplateColumns='repeat('+cols+',minmax(0,1fr))';g.innerHTML="";for(let i=0;i<rows*cols;i++){let d=document.createElement("div");d.className="drone";d.textContent="🚁";g.appendChild(d)}}
+ w.innerHTML='<div class="gameHud2"><div class="gameMission2">Construye una formación de '+target+'</div><div class="gameTiny2">Varias soluciones</div></div><div class="arrayControls"><div class="control"><small>FILAS</small><div class="stepper"><button id="rm">−</button><strong id="rv">4</strong><button id="rp">+</button></div></div><div class="control"><small>COLUMNAS</small><div class="stepper"><button id="cm">−</button><strong id="cv">4</strong><button id="cp">+</button></div></div></div><div class="arrayEquation" id="arrayEquation">4 × 4 = 16</div><div class="droneGrid" id="droneGrid"></div><button class="checkBtn" id="checkArray">LANZAR FORMACIÓN</button>';
+ function draw(){ $("rv").textContent=rows;$("cv").textContent=cols;let g=$("droneGrid");g.style.gridTemplateColumns='repeat('+cols+',minmax(0,1fr))';g.innerHTML="";for(let i=0;i<rows*cols;i++){let d=document.createElement("div");d.className="drone";d.innerHTML='<div class="droneUnit"><i class="rotor l"></i><i class="rotor r"></i></div>';g.appendChild(d)}if($("arrayEquation"))$("arrayEquation").textContent=rows+" × "+cols+" = "+(rows*cols)}
  $("rm").onclick=()=>{rows=Math.max(2,rows-1);draw()};$("rp").onclick=()=>{rows=Math.min(8,rows+1);draw()};$("cm").onclick=()=>{cols=Math.max(2,cols-1);draw()};$("cp").onclick=()=>{cols=Math.min(8,cols+1);draw()};
  $("checkArray").onclick=()=>{tries++;if(rows*cols===target)success("multiplication","¡Exacto! "+rows+" × "+cols+" = "+target+".");else miss("multiplication","Ahora hay "+(rows*cols)+" drones. Necesitas exactamente "+target+".")};
  draw();
 }
 function fraction(){
+ $("scene").classList.add("fractionScene");
  const hard=mastery.fraction>=65,den=hard?6:4,num=hard?5:3,total=hard?12:8,needed=total*num/den;
  $("badge").textContent="FRACCIÓN";$("title").textContent="Enciende "+num+"/"+den+" de la tableta";$("sub").textContent="Todas las partes son iguales. Toca las que necesites.";
  let w=$("world");w.classList.add("fracWorld");
  let on=new Set();
- w.innerHTML='<div class="choc" id="choc" style="grid-template-columns:repeat('+(hard?6:4)+',minmax(0,1fr));width:min(100%,'+(hard?360:280)+'px)"></div><div class="fracCounter"><span id="fracCount">0</span> de '+total+' partes encendidas</div><button class="checkBtn" style="margin-top:15px" id="checkFrac">ACTIVAR</button>';
+ w.innerHTML='<div class="gameHud2"><div class="gameMission2">Carga la batería</div><div class="gameTiny2">Fracción: '+num+'/'+den+'</div></div><div class="fracOrder">Enciende exactamente <strong>'+num+'/'+den+'</strong> del total</div><div class="choc" id="choc" style="grid-template-columns:repeat('+(hard?6:4)+',minmax(0,1fr));width:min(100%,'+(hard?360:280)+'px)"></div><div class="fracCounter"><span id="fracCount">0</span> de '+total+' partes encendidas</div><button class="checkBtn" style="margin-top:15px" id="checkFrac">ACTIVAR</button>';
  for(let i=0;i<total;i++){
    let b=document.createElement("button");b.className="square";
    b.onclick=()=>{on.has(i)?on.delete(i):on.add(i);b.classList.toggle("on");$("fracCount").textContent=on.size;tone(on.has(i)?560:260,.045)};
@@ -496,13 +589,14 @@ function fraction(){
  };
 }
 function timeGame(){
+ $("scene").classList.add("timeScene");
  const hard=mastery.time>=65;
  const depart=hard?(18*60+10):(17*60+20),before=hard?45:30,target=depart-before;
  const fmt=m=>String(Math.floor(m/60)%24).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
  $("badge").textContent="CONTRARRELOJ";$("title").textContent="Llega "+before+" min antes";$("sub").textContent="El autocar sale a las "+fmt(depart)+". Ajusta el reloj a la hora a la que debes estar allí.";
  let w=$("world");w.classList.add("timeWorld");
  let mins=depart;
- w.innerHTML='<div class="station">🚌</div><div class="timeline"></div><div class="clockBox"><small>HORA DE LLEGADA</small><div class="clock" id="clock">'+fmt(mins)+'</div><div class="timeBtns"><button id="minus">− 5 min</button><button id="plus">+ 5 min</button></div></div><button class="checkBtn" id="checkTime">LLEGAR A ESTA HORA</button>';
+ w.innerHTML='<div class="gameHud2"><div class="gameMission2">No pierdas el autocar</div><div class="gameTiny2">Sale '+fmt(depart)+'</div></div><div class="stationArt"><div class="busArt"><i class="wheel l"></i><i class="wheel r"></i></div></div><div class="timeline"></div><div class="clockBox"><small>HORA DE LLEGADA</small><div class="clock" id="clock">'+fmt(mins)+'</div><div class="timeBtns"><button id="minus">− 5 min</button><button id="plus">+ 5 min</button></div></div><button class="checkBtn" id="checkTime">LLEGAR A ESTA HORA</button>';
  function draw(){$("clock").textContent=fmt(mins)}
  $("minus").onclick=()=>{mins-=5;tone(330,.035);draw()};$("plus").onclick=()=>{mins+=5;tone(390,.035);draw()};
  $("checkTime").onclick=()=>{tries++;if(mins===target)success("time","¡A tiempo! "+fmt(depart)+" menos "+before+" min = "+fmt(target)+".");else miss("time","Prueba a contar "+before+" minutos hacia atrás desde las "+fmt(depart)+".")};
@@ -524,7 +618,7 @@ function boss(){
    if(phase>=3){
      $("shipSvg").classList.add("ready");$("launchGlow").classList.add("go");sessionStars+=2;stars+=2;$("stars").textContent=stars;
      buddySay("¡LA NAVE FUNCIONA!",2200);
-     setTimeout(()=>finish(),1500);
+     setTimeout(()=>{metaParts=0;renderMeta();finish()},1500);
    }else render();
  }
  function render(){
@@ -548,8 +642,14 @@ function boss(){
  buddySay("Última misión. ¡Arreglamos la nave!",1900);render();
 }
 function finish(){sessions++;save();$("rStars").textContent=sessionStars;$("rTries").textContent=tries;show("reward");idx=6;dots()}
-function parents(){show("parents");$("skillList").innerHTML="";Object.keys(labels).forEach(k=>{let d=document.createElement("div");d.className="skill";d.innerHTML='<div class="skillTop"><span>'+labels[k]+'</span><span>'+Math.round(mastery[k])+'%</span></div><div class="bar"><div class="fill" style="width:'+mastery[k]+'%"></div></div>';$("skillList").appendChild(d)})}
-$("play").onclick=start;$("parentsBtn").onclick=parents;$("back").onclick=()=>show("home");$("homeAgain").onclick=()=>show("home");$("stars").textContent=stars;dots();
+function parents(){
+ show("parents");$("skillList").innerHTML="";
+ Object.keys(labels).forEach(k=>{let d=document.createElement("div");d.className="skill";d.innerHTML='<div class="skillTop"><span>'+labels[k]+'</span><span>'+Math.round(mastery[k])+'%</span></div><div class="bar"><div class="fill" style="width:'+mastery[k]+'%"></div></div>';$("skillList").appendChild(d)});
+ const recent=telemetry.slice(-10),avg=recent.length?Math.round(recent.reduce((a,x)=>a+x.seconds,0)/recent.length):0,attemptAvg=recent.length?(recent.reduce((a,x)=>a+x.attempts,0)/recent.length).toFixed(1):"0";
+ const box=document.createElement("div");box.innerHTML='<div class="sessionFacts"><div class="sessionFact"><b>'+avg+' s</b><small>tiempo medio por reto</small></div><div class="sessionFact"><b>'+attemptAvg+'</b><small>intentos medios</small></div></div><div class="telemetryNote">Estas métricas se guardan solo en este dispositivo en la demo. Nos sirven para observar dónde se atasca un niño durante una prueba real sin depender únicamente de preguntarle si le ha gustado.</div>';
+ $("skillList").appendChild(box)
+}
+$("play").onclick=start;$("parentsBtn").onclick=parents;$("back").onclick=()=>show("home");$("homeAgain").onclick=()=>show("home");$("stars").textContent=stars;renderMeta();dots();
 })();
 </script>
 </body>
